@@ -7,11 +7,9 @@ router.get("/", (req, res) => {
   res.render("layout", { title: "Layout" });
 });
 
-/**/
-router.get("/prueba", (req, res) => {
-  res.render("prueba", { title: "Prueba" });
-});
-/**/
+router.get("/agregar-pelicula", (req, res) => {
+  res.render("add_movie", { title: "Agregar Pelicula"});
+})
 
 router.get("signin", (req, res) => {
   res.render("auth/signin", { title: "Iniciar Sesion" });

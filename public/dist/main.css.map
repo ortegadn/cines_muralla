@@ -1,1 +1,1 @@
-{"version":3,"sources":["webpack:///./public/sass/styles.scss (1)"],"names":[],"mappings":";AAAA;AACA,uCAAuC;;AAEvC;AACA,aAAa","file":"main.css","sourcesContent":["* {\n  font-family: \"Quicksand\", sans-serif; }\n\nh3 {\n  color: red; }\n"],"sourceRoot":""}
+{"version":3,"sources":["webpack:///./public/sass/styles.scss (1)"],"names":[],"mappings":";AAAA;AACA,uCAAuC;;AAEvC;AACA;AACA,gBAAgB","file":"main.css","sourcesContent":["* {\n  font-family: \"Quicksand\", sans-serif; }\n\n.main-container {\n  width: 100%;\n  padding: 50px; }\n"],"sourceRoot":""}

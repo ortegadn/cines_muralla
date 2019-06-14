@@ -2,8 +2,9 @@
 * {
   font-family: "Quicksand", sans-serif; }
 
-h3 {
-  color: red; }
+.main-container {
+  width: 100%;
+  padding: 50px; }
 
 
 /*# sourceMappingURL=main.css.map*/
