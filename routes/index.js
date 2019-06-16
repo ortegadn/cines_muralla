@@ -13,6 +13,28 @@ router.get("/prueba", (req, res) => {
 });
 /**/
 
+
+router.get("/home", (req, res) => {
+  res.render("home", { title: "home" });
+});
+
+router.get("/administrar", (req, res) => {
+  res.render("administrar", { title: "administrar" });
+});
+
+router.get("/compra-boletos", (req, res) => {
+  res.render("compra-boletos", { title: "compra-boletos" });
+});
+
+router.get("/compra-combos", (req, res) => {
+  res.render("compra-combos", { title: "compra-combos" });
+});
+
+router.get("/agregarSede", (req, res) => {
+  res.render("agregarSede", { title: "AgregarSede" });
+});
+
+
 router.get("signin", (req, res) => {
   res.render("auth/signin", { title: "Iniciar Sesion" });
 });
