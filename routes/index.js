@@ -4,7 +4,7 @@ const authController = require("../controllers/authController");
 const userController = require("../controllers/userController");
 
 router.get("/", (req, res) => {
-  res.render("layout", { title: "Layout" });
+  res.render("home", { title: "Home" });
 });
 
 router.get("/agregar-pelicula", (req, res) => {
@@ -12,9 +12,9 @@ router.get("/agregar-pelicula", (req, res) => {
 })
 
 
-router.get("/home", (req, res) => {
+/*router.get("/home", (req, res) => {
   res.render("home", { title: "home" });
-});
+});*/
 
 router.get("/administrar", (req, res) => {
   res.render("administrar", { title: "administrar" });
