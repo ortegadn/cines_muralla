@@ -3,23 +3,21 @@ const router = express.Router();
 const authController = require("../controllers/authController");
 const userController = require("../controllers/userController");
 const peliculaController = require("../controllers/peliculacontroller");
+const comidaController = require("../controllers/comidaController")
 
 router.get("/", (req, res) => {
   res.render("home", { title: "Home" });
 });
 
+/*----------------------PELICULAS------------------------------*/
 router.get("/agregar-pelicula", (req, res) => {
   res.render("add_movie", { title: "Agregar Pelicula"});
 })
 
 router.post("/createMovie" ,(req,res)=>{
   peliculaController.CreatePelicula(req.body);
-  res.redirect('/');
+  res.redirect('/get_peliculas');
 });
-
-/*router.get("/home", (req, res) => {
-  res.render("home", { title: "home" });
-});*/
 
 router.get("/get-peliculas", (req,res)=>{
   peliculaController.GetPelicula((pelicula, err) => {
@@ -72,8 +70,19 @@ router.get('/eliminar-pelicula', (req,res)=>{
 router.post("/delete-pelicula",(req,res)=>{
   peliculaController.DeletePelicula(req.body,req.body.titulo);
   res.redirect('/get-peliculas');
-
 });
+/*-------------------------------------------------------------*/
+
+/*------------------------COMIDA-------------------------*/
+router.get("/agregar-comida", (req, res) => {
+  res.render("agregar_comida", { title: "Agregar Comida"});
+});
+
+router.post("/createComida" ,(req,res)=>{
+  comidaController.CreateComida(req.body);
+  res.redirect('/');
+});
+/*-------------------------------------------------------*/
 
 router.get("/administrar", (req, res) => {
   res.render("administrar", { title: "administrar" });
@@ -95,9 +104,11 @@ router.get("signin", (req, res) => {
   res.render("auth/signin", { title: "Iniciar Sesion" });
 });
 router.post("signin", authController.signin);
+
 router.get("signup", (req, res) => {
   res.render("auth/signup", { title: "Registrarse" });
 });
+
 router.post("signup", userController.signup, authController.signin);
 
 module.exports = router;
