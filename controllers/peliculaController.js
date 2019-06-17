@@ -25,6 +25,19 @@ controller.GetPelicula = async function(callback){
     }
 }
 
+controller.UpdatePelicula = async function (data){
+    let response = Pelicula.update({
+        descripcion: data.descripcion,
+        genero: data.genero,
+        duracion_min: data.duracion_min,
+        fecha_estreno: data.fecha_estreno
+    },{
+        where:{
+            titulo: data.titulo
+        }
+    });
+}
+
 controller.DeletePelicula = async function (data){
     console.log(data)
     let response = Pelicula.destroy({

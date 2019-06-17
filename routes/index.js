@@ -34,6 +34,28 @@ router.get("/get-peliculas", (req,res)=>{
   });
 });
 
+router.get("/modificar-pelicula", (req,res)=>{
+  peliculaController.GetPelicula((pelicula, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener peliculas"
+      });
+    else {
+      res.render("update_movie", {pelicula});
+    }
+  });
+});
+
+router.post("/updateMovie", (req, res) => {
+  console.log(req.body);
+    if(!!req.body.titulo){ 
+      console.log(req.body.titulo);
+    peliculaController.UpdatePelicula(req.body,req.body.titulo);
+  }
+  res.redirect('/get-peliculas');
+});
+
 router.get('/eliminar-pelicula', (req,res)=>{
   peliculaController.GetPelicula((pelicula, err) => {
     if (err)
