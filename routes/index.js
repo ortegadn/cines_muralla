@@ -47,6 +47,8 @@ router.get("/modificar-pelicula", (req,res)=>{
   });
 });
 
+
+
 router.post("/updateMovie", (req, res) => {
   console.log(req.body);
     if(!!req.body.titulo){ 
@@ -73,6 +75,22 @@ router.post("/delete-pelicula",(req,res)=>{
   peliculaController.DeletePelicula(req.body,req.body.titulo);
   res.redirect('/get-peliculas');
 
+});
+
+router.get("/ModificarSala", (req, res) => {
+  res.render("modificarSala", { title: "ModificarSala" });
+});
+
+router.get("/EliminarSala", (req, res) => {
+  res.render("EliminarSala", { title: "EliminarSala" });
+});
+
+router.get("/AgregarSala", (req, res) => {
+  res.render("AgregarSala", { title: "AgregarSala" });
+});
+
+router.get("/ModificarSede", (req, res) => {
+  res.render("ModificarSede", { title: "ModificarSede" });
 });
 
 router.get("/administrar", (req, res) => {
