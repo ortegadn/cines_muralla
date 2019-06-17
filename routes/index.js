@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/authController");
 const userController = require("../controllers/userController");
+const peliculaController = require("../controllers/peliculacontroller");
 
 router.get("/", (req, res) => {
   res.render("home", { title: "Home" });
@@ -11,10 +12,46 @@ router.get("/agregar-pelicula", (req, res) => {
   res.render("add_movie", { title: "Agregar Pelicula"});
 })
 
+router.post("/createMovie" ,(req,res)=>{
+  peliculaController.CreatePelicula(req.body);
+  res.redirect('/');
+});
 
 /*router.get("/home", (req, res) => {
   res.render("home", { title: "home" });
 });*/
+
+router.get("/get-peliculas", (req,res)=>{
+  peliculaController.GetPelicula((pelicula, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener peliculas"
+      });
+    else {
+      res.render("get_movies", {pelicula});
+    }
+  });
+});
+
+router.get('/eliminar-pelicula', (req,res)=>{
+  peliculaController.GetPelicula((pelicula, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener peliculas"
+      });
+    else {
+      res.render("delete_movie", {pelicula});
+    }
+  });
+});
+
+router.post("/delete-pelicula",(req,res)=>{
+  peliculaController.DeletePelicula(req.body,req.body.titulo);
+  res.redirect('/get-peliculas');
+
+});
 
 router.get("/administrar", (req, res) => {
   res.render("administrar", { title: "administrar" });
@@ -31,7 +68,6 @@ router.get("/compra-combos", (req, res) => {
 router.get("/agregarSede", (req, res) => {
   res.render("agregarSede", { title: "AgregarSede" });
 });
-
 
 router.get("signin", (req, res) => {
   res.render("auth/signin", { title: "Iniciar Sesion" });
