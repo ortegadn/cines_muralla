@@ -15,5 +15,6 @@ const Sala = sequelize.define("Sala", {
 
 //Tipo_formato.hasMany(Sala,{as:'idformato',foreignKey:'id_formato'});
 Sala.belongsTo(Tipo_formato, {as:'idformato',foreignKey:'id_formato'});
+Sala.belongsTo(Tipo_sala, {as:'idtiposala', foreignKey:'id_tipo_sala'});
 Sala.sync();
 module.exports = Sala;

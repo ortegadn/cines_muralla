@@ -4,6 +4,11 @@ const sequelize = require("../config/database");
 /*const Tipo_sala = require('../models/Sala');*/
 
 const Tipo_sala = sequelize.define("Tipo_sala", {
+    id_tipo_sala:{
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        primaryKey: true
+    },
     tipo_sala: {
         type: Sequelize.STRING,
         allowNull: false

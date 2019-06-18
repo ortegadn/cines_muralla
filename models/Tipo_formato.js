@@ -6,7 +6,7 @@ const Sala = require('../models/Sala');
 
 const Tipo_formato = sequelize.define("Tipo_formato", {
     id_formato: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false
     },
