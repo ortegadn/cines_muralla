@@ -3,12 +3,21 @@ const router = express.Router();
 const authController = require("../controllers/authController");
 const userController = require("../controllers/userController");
 const peliculaController = require("../controllers/peliculacontroller");
-const comidaController = require("../controllers/comidaController")
+const comidaController = require("../controllers/comidaController");
+const sedeController = require("../controllers/sedeController");
 
 router.get("/", (req, res) => {
   res.render("home", { title: "Home" });
 });
 
+router.get("/agregar-sede", (req, res) => {
+  res.render("./sede/agregarSede", { title: "AgregarSede" });
+});
+
+router.post("/agregarSede", (req, res) => {
+  sedeController.CreateSede(req.body);
+  res.redirect('/administrar');
+})
 /*----------------------PELICULAS------------------------------*/
 router.get("/agregar-pelicula", (req, res) => {
   res.render("add_movie", { title: "Agregar Pelicula"});
@@ -16,7 +25,7 @@ router.get("/agregar-pelicula", (req, res) => {
 
 router.post("/createMovie" ,(req,res)=>{
   peliculaController.CreatePelicula(req.body);
-  res.redirect('/get_peliculas');
+  res.redirect('/get-peliculas');
 });
 
 router.get("/get-peliculas", (req,res)=>{
@@ -94,10 +103,6 @@ router.get("/compra-boletos", (req, res) => {
 
 router.get("/compra-combos", (req, res) => {
   res.render("compra-combos", { title: "compra-combos" });
-});
-
-router.get("/agregarSede", (req, res) => {
-  res.render("agregarSede", { title: "AgregarSede" });
 });
 
 router.get("signin", (req, res) => {
