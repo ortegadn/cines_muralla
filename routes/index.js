@@ -77,6 +77,8 @@ router.post("/delete-pelicula",(req,res)=>{
 
 });
 
+
+
 router.get("/ModificarSala", (req, res) => {
   res.render("modificarSala", { title: "ModificarSala" });
 });
@@ -95,6 +97,14 @@ router.get("/ModificarSede", (req, res) => {
 
 router.get("/administrar", (req, res) => {
   res.render("administrar", { title: "administrar" });
+});
+
+router.get("/catalogocines", (req, res) => {
+  res.render("catalogocines", { title: "catalogocines" });
+});
+
+router.get("/peliculasxsede", (req, res) => {
+  res.render("peliculasxsede", { title: "peliculasxsede" });
 });
 
 router.get("/compra-boletos", (req, res) => {
