@@ -2,8 +2,14 @@
 * {
   font-family: "Quicksand", sans-serif; }
 
+<<<<<<< HEAD
 h3 {
   color: red; }
+=======
+.main-container {
+  width: 100%;
+  padding: 50px; }
+>>>>>>> origin/DevErick
 
 
 /*# sourceMappingURL=main.css.map*/

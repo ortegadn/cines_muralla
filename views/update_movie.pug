@@ -1,0 +1,40 @@
+extends layout
+
+block content
+
+    .col-sm-9#form
+        h3 ACTUALIZAR PELÍCULA
+        hr
+        br
+        .card
+            .card-body
+                form(method="POST", action="/updateMovie" )
+                    .row
+                        .col-sm-3
+                            label Película a modificar
+                            br
+                            select(name='titulo', class="form-control", id="titulo")
+                                -for(let i = 0; i < pelicula.length; i++)
+                                    option(value=pelicula[i].titulo) #{pelicula[i].titulo}
+                        .col-sm-3
+                            label Descripción
+                            br
+                            input(type="text", name="descripcion", id="descripcion", class="form-control")
+                        .col-sm-3
+                            label Duración
+                            br
+                            input(type="number", name="duracion_min", id="duracion_min", class="form-control")
+                        .col-sm-3
+                            label Género
+                            br
+                            select(name='genero', class="form-control", id="genero")
+                                option(value="A") A
+                                option(value="B") B
+                                option(value="C") C
+                                option(value="D") D
+                        .col-sm-3
+                            label Fecha de estreno
+                            br
+                            input(type="date", name="fecha_estreno", id="fecha_estreno", class="form-control")
+                    br
+                    button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Actualizar
