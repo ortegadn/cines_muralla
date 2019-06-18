@@ -6,7 +6,7 @@ const Pelicula = sequelize.define("Pelicula", {
     titulo: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
     },
     descripcion: {
         type: Sequelize.STRING,
@@ -14,10 +14,10 @@ const Pelicula = sequelize.define("Pelicula", {
     },
     duracion_min: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
     },
     genero: {
-        type: Sequelize.CHAR(1),
+        type: Sequelize.STRING,
         allowNull: false
     },
     fecha_estreno: {
