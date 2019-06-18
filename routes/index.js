@@ -2,18 +2,6 @@ const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/authController");
 const userController = require("../controllers/userController");
-<<<<<<< HEAD
-
-router.get("/", (req, res) => {
-  res.render("layout", { title: "Layout" });
-});
-
-/**/
-router.get("/prueba", (req, res) => {
-  res.render("prueba", { title: "Prueba" });
-});
-/**/
-=======
 const peliculaController = require("../controllers/peliculacontroller");
 const comidaController = require("../controllers/comidaController")
 
@@ -28,7 +16,7 @@ router.get("/agregar-pelicula", (req, res) => {
 
 router.post("/createMovie" ,(req,res)=>{
   peliculaController.CreatePelicula(req.body);
-  res.redirect('/get_peliculas');
+  res.redirect('/get-peliculas');
 });
 
 router.get("/get-peliculas", (req,res)=>{
@@ -111,23 +99,16 @@ router.get("/compra-combos", (req, res) => {
 router.get("/agregarSede", (req, res) => {
   res.render("agregarSede", { title: "AgregarSede" });
 });
->>>>>>> origin/DevErick
 
 router.get("signin", (req, res) => {
   res.render("auth/signin", { title: "Iniciar Sesion" });
 });
 router.post("signin", authController.signin);
-<<<<<<< HEAD
-router.get("signup", (req, res) => {
-  res.render("auth/signup", { title: "Registrarse" });
-});
-=======
 
 router.get("signup", (req, res) => {
   res.render("auth/signup", { title: "Registrarse" });
 });
 
->>>>>>> origin/DevErick
 router.post("signup", userController.signup, authController.signin);
 
 module.exports = router;
