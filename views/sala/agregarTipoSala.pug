@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+
+  .main-container
+    .row
+      .col-md-6.col-md-offset-3
+        h2 AGREGAR TIPO SALA
+
+        // register form
+        form(method='POST' action='/agregarTipoSala')
+            div.form-group
+                label(for='id_tipo_sala') ID tipo sala
+                input(type='number', name="id_tipo_sala", id="id_tipo_sala",class="form-control")
+            div.form-group
+                label(for='tipo_sala') Tipo de sala
+                input(type='text', name="tipo_sala", id="tipo_sala",class="form-control")
+            
+            button.btn.btn-primary(type='submit') Agregar
+  

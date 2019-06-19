@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+
+  .main-container
+    .row
+      .col-md-6.col-md-offset-3
+        h2 AGREGAR SEDE
+
+        // register form
+        form(method='POST' action='/agregarSede')
+          div.form-group
+            label(for='id_sede') Nombre Fiscal
+            input(type='text', name="id_sede", id="id_sede",class="form-control")
+          div.form-group
+            label(for='ubicacion') Ubicación
+            input(type='text', id="ubicacion", name='ubicacion', class="form-control")
+          div.form-group
+            label(for="horario_apertura") Hora de apertura
+            input(type='time', name='horario_apertura', id ='horario_apertura', class='form-control')
+          div.form-group
+            label(for='horario_cierre') Hora de cierre
+            input(type="time", name='horario_cierre', id="horario_cierre", class="form-control")
+          button.btn.btn-primary(type='submit') Agregar
+  
+  

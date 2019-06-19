@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+
+  .main-container
+    .row
+      .col-md-6.col-md-offset-3
+        h2 AGREGAR TIPO FORMATO
+
+        // register form
+        form(method='POST' action='/agregarTipoFormato')
+            div.form-group
+                label(for='id_formato') ID tipo formato
+                input(type='number', name="id_formato", id="id_formato",class="form-control")
+            div.form-group
+                label(for='tipo_formato') Tipo de formato
+                input(type='text', name="tipo_formato", id="tipo_formato",class="form-control")
+            
+            button.btn.btn-primary(type='submit') Agregar
+  
