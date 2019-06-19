@@ -3,6 +3,12 @@ Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
 const Pelicula = sequelize.define("Pelicula", {
+    // este ultimo lo hic yo ( no se porq erick lo quit'o)
+    id_pelicula:{
+        type:sequelize.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+    },
     titulo: {
         type: Sequelize.STRING,
         allowNull: false,
