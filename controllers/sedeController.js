@@ -13,4 +13,16 @@ controller.CreateSede = async function(data){
     }
 };
 
+controller.GetSede = async function(callback){
+    try {
+        let response = await Sede.findAll({ 
+        });
+        let sede = response.map(result => result.dataValues);
+        callback(sede, null);
+        
+    } catch (error) {
+        callback(error, null);
+    }
+}
+
 module.exports = controller;
