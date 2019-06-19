@@ -13,4 +13,15 @@ controller.CreateTipoFormato = async function(data){
     }
 };
 
+controller.GetTipoFormato = async function(callback){
+    try {
+        let response = await Tipo_formato.findAll({ 
+        });
+        let tipoFormato = response.map(result => result.dataValues);
+        callback(tipoFormato, null);
+    } catch (error) {
+        callback(error, null);
+    }
+};
+
 module.exports = controller;

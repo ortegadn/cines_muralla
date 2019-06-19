@@ -7,7 +7,8 @@ const Tipo_sala = sequelize.define("Tipo_sala", {
     id_tipo_sala:{
         type: Sequelize.INTEGER,
         allowNull:false,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement:true
     },
     tipo_sala: {
         type: Sequelize.STRING,

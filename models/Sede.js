@@ -6,9 +6,10 @@ const Tipo_formato = require('../models/Tipo_formato');
 
 const Sede = sequelize.define("Sede", {
     id_sede: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
+        autoIncrement: true
     },
     ubicacion: {
         type: Sequelize.STRING,

@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 
 block content
     .col-sm-9#form
@@ -10,8 +10,8 @@ block content
                 form(method="POST", action="/delete-pelicula" )
                     .row
                         .col-sm-3
-                            select(name='titulo', class="form-control", id="titulo")
+                            select(name='id_pelicula', class="form-control", id="id_pelicula")
                                 -for(let i = 0; i < pelicula.length; i++)
-                                    option(value=pelicula[i].titulo) #{pelicula[i].titulo}
+                                    option(value=pelicula[i].id_pelicula) #{pelicula[i].titulo}
                     br
                     button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Eliminar

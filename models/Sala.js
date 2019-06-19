@@ -7,8 +7,21 @@ const Tipo_formato = require('../models/Tipo_formato');
 
 const Sala = sequelize.define("Sala", {
     id_sala: {
-        type: Sequelize.CHAR(1),
+        type: Sequelize.INTEGER,
         primaryKey: true,
+        allowNull: false,
+        autoIncrement:true
+    },
+    cant_entradas: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    cant_salidas: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    cant_pasillos: {
+        type: Sequelize.INTEGER,
         allowNull: false
     }
     // no se si poner cant_filas cant_columnas y cant_pasillos aqui o en mapa de butacas
@@ -18,4 +31,5 @@ const Sala = sequelize.define("Sala", {
 Sala.belongsTo(Tipo_formato, {as:'idformato',foreignKey:'id_formato'});
 Sala.belongsTo(Tipo_sala, {as:'idtiposala', foreignKey:'id_tipo_sala'});
 Sala.sync();
+
 module.exports = Sala;
