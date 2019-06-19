@@ -7,11 +7,7 @@ const Comida = sequelize.define("Comida", {
         type: Sequelize.STRING,
         allowNull: false
     },
-    id_producto: {
-        type: sequelize.INTEGER,
-        primaryKey: true,
-        allowNull: false
-    }
+    
 } )
 
 Comida.sync()
