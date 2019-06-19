@@ -33,7 +33,7 @@ controller.UpdatePelicula = async function (data){
         fecha_estreno: data.fecha_estreno
     },{
         where:{
-            titulo: data.titulo
+            id_pelicula: data.id_pelicula
         }
     });
 }
@@ -42,7 +42,7 @@ controller.DeletePelicula = async function (data){
     console.log(data)
     let response = Pelicula.destroy({
         where:{
-            titulo: data.titulo
+            id_pelicula: data.id_pelicula
         }
     })
 }

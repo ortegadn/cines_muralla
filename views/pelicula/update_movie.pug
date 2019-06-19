@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 
 block content
 
@@ -13,9 +13,9 @@ block content
                         .col-sm-3
                             label Película a modificar
                             br
-                            select(name='titulo', class="form-control", id="titulo")
+                            select(name='id_pelicula', class="form-control", id="id_pelicula")
                                 -for(let i = 0; i < pelicula.length; i++)
-                                    option(value=pelicula[i].titulo) #{pelicula[i].titulo}
+                                    option(value=pelicula[i].id_pelicula) #{pelicula[i].titulo}
                         .col-sm-3
                             label Descripción
                             br
@@ -27,11 +27,16 @@ block content
                         .col-sm-3
                             label Género
                             br
-                            select(name='genero', class="form-control", id="genero")
-                                option(value="A") A
-                                option(value="B") B
-                                option(value="C") C
-                                option(value="D") D
+                            label(for='id_genero') Genero:
+                            select(name='id_genero', class="form-control", id="id_genero", class="form-control")
+                                option(value="1") Acción
+                                option(value="2") Aventura
+                                option(value="3") Animación
+                                option(value="4") Comedia
+                                option(value="5") Drama
+                                option(value="6") Terror
+                                option(value="7") Suspenso
+                                option(value="8") Ciencia Ficción
                         .col-sm-3
                             label Fecha de estreno
                             br

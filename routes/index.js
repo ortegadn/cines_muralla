@@ -8,6 +8,7 @@ const sedeController = require("../controllers/sedeController");
 const tipoSalaController = require("../controllers/tipoSalaController");
 const tipoFormatoController = require("../controllers/tipoFormatoController");
 const salaController = require("../controllers/salaController");
+const generoController = require("../controllers/generoController")
 
 router.get("/", (req, res) => {
   res.render("home", { title: "Home" });
@@ -45,9 +46,18 @@ router.get("/agregar-sala", (req, res) => {
 });
 
 router.post("/agregarSala", (req, res) => {
-  tipoSalaController.GetIdByTipo(req.body.tipo_sala)
+  salaController.CreateSala(req.body);
+  res.redirect('/administrar')
 })
 
+router.get("/agregar-genero", (req, res) => {
+  res.render("./pelicula/agregarGenero", {title: "Tipo Genero"});
+});
+
+router.post("/agregarGenero", (req, res) => {
+  generoController.CreateGenero(req.body);
+  res.redirect("/administrar")
+})
 
 router.get("/agregar-sede", (req, res) => {
   res.render("./sede/agregarSede", { title: "Agregar Sede" });
@@ -59,7 +69,7 @@ router.post("/agregarSede", (req, res) => {
 })
 /*----------------------PELICULAS------------------------------*/
 router.get("/agregar-pelicula", (req, res) => {
-  res.render("add_movie", { title: "Agregar Pelicula"});
+  res.render("./pelicula/add_movie", { title: "Agregar Pelicula"});
 })
 
 router.post("/createMovie" ,(req,res)=>{
@@ -75,7 +85,7 @@ router.get("/get-peliculas", (req,res)=>{
         msg: "Fallo en obtener peliculas"
       });
     else {
-      res.render("get_movies", {pelicula});
+      res.render("./pelicula/get_movies", {pelicula});
     }
   });
 });
@@ -88,16 +98,16 @@ router.get("/modificar-pelicula", (req,res)=>{
         msg: "Fallo en obtener peliculas"
       });
     else {
-      res.render("update_movie", {pelicula});
+      res.render("./pelicula/update_movie", {pelicula});
     }
   });
 });
 
 router.post("/updateMovie", (req, res) => {
   console.log(req.body);
-    if(!!req.body.titulo){ 
-      console.log(req.body.titulo);
-    peliculaController.UpdatePelicula(req.body,req.body.titulo);
+    if(!!req.body.id_pelicula){ 
+      console.log(req.body.id_pelicula);
+    peliculaController.UpdatePelicula(req.body,req.body.id_pelicula);
   }
   res.redirect('/get-peliculas');
 });
@@ -110,7 +120,7 @@ router.get('/eliminar-pelicula', (req,res)=>{
         msg: "Fallo en obtener peliculas"
       });
     else {
-      res.render("delete_movie", {pelicula});
+      res.render("./pelicula/delete_movie", {pelicula});
     }
   });
 });

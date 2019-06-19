@@ -1,12 +1,18 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
+const Genero_pelicula = require('../models/Genero_pelicula');
 
 const Pelicula = sequelize.define("Pelicula", {
+    id_pelicula: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+        unique: true,
+    },
     titulo: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
     },
     descripcion: {
         type: Sequelize.STRING,
@@ -16,15 +22,12 @@ const Pelicula = sequelize.define("Pelicula", {
         type: Sequelize.INTEGER,
         allowNull: false,
     },
-    genero: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
     fecha_estreno: {
         type: Sequelize.DATE,
         allowNull: false
     }
 })
 
+Genero_pelicula.hasMany(Pelicula, {as:'idgenero', foreignKey:'id_genero'});
 Pelicula.sync()
 module.exports = Pelicula;

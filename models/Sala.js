@@ -10,6 +10,18 @@ const Sala = sequelize.define("Sala", {
         type: Sequelize.CHAR(1),
         primaryKey: true,
         allowNull: false
+    },
+    cant_entradas: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    cant_salidas: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    cant_pasillos: {
+        type: Sequelize.INTEGER,
+        allowNull: false
     }
 });
 
