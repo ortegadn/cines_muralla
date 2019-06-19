@@ -8,7 +8,7 @@ const Pelicula = sequelize.define("Pelicula", {
         type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false,
-        unique: true,
+        autoIncrement: true
     },
     titulo: {
         type: Sequelize.STRING,

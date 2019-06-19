@@ -13,7 +13,7 @@ controller.CreateTipoSala = async function(data){
     }
 };
 
-/*controller.GetTipoSala = async function(callback){
+controller.GetTipoSala = async function(callback){
     try {
         let response = await Tipo_sala.findAll({ 
         });
@@ -23,15 +23,15 @@ controller.CreateTipoSala = async function(data){
     } catch (error) {
         callback(error, null);
     }
-};*/
+};
 
-controller.GetIdByTipo = async function(data){
+/*controller.GetIdByTipo = async function(data){
     let tipo_sala = Tipo_sala.find({
         where: {
             tipo_sala: data.tipo_sala
         }
     }).thenReturn(tipo_sala);
-}
+}*/
 
 
 module.exports = controller;

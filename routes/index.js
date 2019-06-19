@@ -33,6 +33,17 @@ router.post("/agregarTipoFormato", (req, res) => {
 })
 
 router.get("/agregar-sala", (req, res) => {
+  let Tformato;
+  let Tsala;
+
+  tipoFormatoController.GetTipoFormato((tipoFormato, err) => {
+    Tformato=tipoFormato;
+  });
+
+  tipoSalaController.GetTipoSala((tipoSala, err) => {
+    Tsala = tipoSala;
+  });
+
   sedeController.GetSede((sede, err) => {
     if(err)
       res.json({
@@ -40,7 +51,10 @@ router.get("/agregar-sala", (req, res) => {
         msg: "Fallo en obtener sede"
       });
     else{
-      res.render("./sala/agregarSala", {sede});
+      console.log(Tformato);
+      console.log(Tsala);
+      
+      res.render("./sala/agregarSala", {sede,Tformato,Tsala});
     }
   });
 });

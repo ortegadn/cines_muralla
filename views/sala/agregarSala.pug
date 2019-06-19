@@ -16,24 +16,17 @@ block content
                                 -for(let i = 0; i < sede.length; i++)
                                     option(value=sede[i].id_sede) #{sede[i].ubicacion}
                         .col-sm-3
-                            label Número de sala
-                            br
-                            input(type="number", name="id_sala", id="id_sala", class="form-control", min="1")
-                        .col-sm-3
                             label Tecnología de la sala
                             br           
-                            input(type="number", name="id_formato", id="id_formato", class="form-control",min="1", max="5")
-                            p(style="font-size: 10px") 1) Normal
-                            p(style="font-size: 10px") 2) 3D
-                            p(style="font-size: 10px") 3) 4D
-                            p(style="font-size: 10px") 4) IMAX
-                            p(style="font-size: 10px") 5) ATMOS
+                            select(name='id_formato', class="form-control", id="id_formato")
+                                -for(let i = 0; i < Tformato.length; i++)
+                                    option(value=Tformato[i].id_formato) #{Tformato[i].tipo_formato}
                         .col-sm-3
                             label Tipo de sala
                             br
-                            input(type="number", name="id_tipo_sala", id="id_tipo_sala", class="form-control",min="1", max="2")
-                            p(style="font-size: 10px") 1) Normal
-                            p(style="font-size: 10px") 2) Premium
+                            select(name='id_tipo_sala', class="form-control", id="id_tipo_sala")
+                                -for(let i = 0; i < Tsala.length; i++)
+                                    option(value=Tsala[i].id_tipo_sala) #{Tsala[i].tipo_sala}
                         .col-sm-3
                             label Cantidad de pasillos
                             br

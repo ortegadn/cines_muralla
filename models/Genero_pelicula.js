@@ -6,7 +6,8 @@ const Genero_pelicula = sequelize.define("Genero_Pelicula", {
     id_genero: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
+        autoIncrement: true
     },
     tipo_genero: {
         type: Sequelize.STRING,
