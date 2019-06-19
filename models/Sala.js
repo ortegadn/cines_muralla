@@ -24,6 +24,7 @@ const Sala = sequelize.define("Sala", {
         type: Sequelize.INTEGER,
         allowNull: false
     }
+    // no se si poner cant_filas cant_columnas y cant_pasillos aqui o en mapa de butacas
 });
 
 //Tipo_formato.hasMany(Sala,{as:'idformato',foreignKey:'id_formato'});

@@ -117,6 +117,8 @@ router.get("/modificar-pelicula", (req,res)=>{
   });
 });
 
+
+
 router.post("/updateMovie", (req, res) => {
   console.log(req.body);
     if(!!req.body.id_pelicula){ 
@@ -156,8 +158,34 @@ router.post("/createComida" ,(req,res)=>{
 });
 /*-------------------------------------------------------*/
 
+
+
+router.get("/ModificarSala", (req, res) => {
+  res.render("modificarSala", { title: "ModificarSala" });
+});
+
+router.get("/EliminarSala", (req, res) => {
+  res.render("EliminarSala", { title: "EliminarSala" });
+});
+
+router.get("/AgregarSala", (req, res) => {
+  res.render("AgregarSala", { title: "AgregarSala" });
+});
+
+router.get("/ModificarSede", (req, res) => {
+  res.render("ModificarSede", { title: "ModificarSede" });
+});
+
 router.get("/administrar", (req, res) => {
   res.render("administrar", { title: "administrar" });
+});
+
+router.get("/catalogocines", (req, res) => {
+  res.render("catalogocines", { title: "catalogocines" });
+});
+
+router.get("/peliculasxsede", (req, res) => {
+  res.render("peliculasxsede", { title: "peliculasxsede" });
 });
 
 router.get("/compra-boletos", (req, res) => {
