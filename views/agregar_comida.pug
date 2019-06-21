@@ -1,15 +1,14 @@
 extends layout
 
 block content
-
-  .main-container
-    .row
-      .col-md-6.col-md-offset-3
-        h2 AGREGAR COMIDA
-
-        // register form
-        form(method='POST' action='/createComida')
-          div.form-group
-            label(for='nombre_comida') Nombre de la comida:
-            input(type='text', name="nombre_comida", id="nombre_comida",class="form-control")
-          button.btn.btn-primary(type='submit') Agregar
+  .col-sm-9#form(style="max-width: 100%;")
+      hr
+      h3(style="margin-top:10px") Agregar comida
+      .card
+        .card-body
+            form(method='POST' action='/createComida')
+                .row
+                    .col-sm-3
+                        input(type='text', name="nombre_comida", id="nombre_comida",class="form-control")
+                br
+                button.btn.btn-primary(type='submit') Agregar

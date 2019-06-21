@@ -4,7 +4,7 @@ block content
   .container-fluid
     h2 ADMINISTRAR SITIO
     
-    .row
+    .row(style = 'margin-top: 15px; margin-bottom: 15px')
       .col(style='background-color:white;')
         .list-group
           a.list-group-item.list-group-item-action.active(href='#')
@@ -27,6 +27,7 @@ block content
           a.list-group-item.list-group-item-action(href='/modificar-pelicula') Modificar película 
           a.list-group-item.list-group-item-action(href='/eliminar-pelicula') Eliminar película
           a.list-group-item.list-group-item-action(href='agregar-genero') Agregar genero
+    .row(style = 'margin-top: 15px; margin-bottom: 15px')
       .col(style='background-color:white;')
         .list-group
           a.list-group-item.list-group-item-action.active(href='#')
@@ -35,3 +36,16 @@ block content
           a.list-group-item.list-group-item-action(href='#') Eliminar Comida
           a.list-group-item.list-group-item-action(href='#') Crear combo
           a.list-group-item.list-group-item-action(href='#') Eliminar combo
+      .col(style='background-color:white;')
+        .list-group
+          a.list-group-item.list-group-item-action.active(href='#')
+            | Repertorio por sede
+          a.list-group-item.list-group-item-action(href='/agregar-repertorio') Agregar película a repertorio
+          a.list-group-item.list-group-item-action(href='#') Visualizar cartelera por sede
+          a.list-group-item.list-group-item-action(href='/agregar-idioma') Agregar idioma
+          a.list-group-item.list-group-item-action(href='/agregar-censura') Agregar censura
+      .col(style='background-color:white;')
+        .list-group
+          a.list-group-item.list-group-item-action.active(href='#')
+            | Funciones por sede
+          a.list-group-item.list-group-item-action(href='#') Agregar función a sede

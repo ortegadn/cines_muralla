@@ -1,17 +1,15 @@
 extends ../layout
 
 block content
-
-  .main-container
-    .row
-      .col-md-6.col-md-offset-3
-        h2 AGREGAR TIPO DE FORMATO
-
-        // register form
-        form(method='POST' action='/agregarTipoFormato')
-            div.form-group
-                label(for='tipo_formato') Tipo de formato
-                input(type='text', name="tipo_formato", id="tipo_formato",class="form-control")
-            
-            button.btn.btn-primary(type='submit') Agregar
-  
+  .col-sm-9#form(style="max-width: 100%;")
+      hr
+      h3(style="margin-top:10px") Agregar tipo de formato
+      hr
+      .card
+        .card-body
+            form(method='POST' action='/agregarTipoFormato')
+                .row
+                    .col-sm-3
+                        input(type='text', name="tipo_formato", id="tipo_formato",class="form-control")
+                br
+                button.btn.btn-primary(type='submit') Agregar

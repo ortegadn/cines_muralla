@@ -12,7 +12,7 @@ const Pelicula = sequelize.define("Pelicula", {
     },
     titulo: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false
     },
     descripcion: {
         type: Sequelize.STRING,
