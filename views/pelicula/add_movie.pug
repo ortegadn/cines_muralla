@@ -10,9 +10,6 @@ block content
         // register form
         form(method='POST' action='/createMovie')
           div.form-group
-            label(for='id_pelicula') ID película
-            input(type='text', name="id_pelicula", id="id_pelicula",class="form-control")
-          div.form-group
             label(for='titulo') Título:
             input(type='text', name="titulo", id="titulo",class="form-control")
           div.form-group
@@ -24,14 +21,8 @@ block content
           div.form-group
             label(for='id_genero') Genero:
             select(name='id_genero', class="form-control", id="id_genero")
-              option(value="1") Acción
-              option(value="2") Aventura
-              option(value="3") Animación
-              option(value="4") Comedia
-              option(value="5") Drama
-              option(value="6") Terror
-              option(value="7") Suspenso
-              option(value="8") Ciencia Ficción
+              -for(let i = 0; i < genero.length; i++)
+                option(value=genero[i].id_genero) #{genero[i].tipo_genero}
           div.form-group
             label(for='fecha_estreno') Fecha de estreno:
             input(type='date',  name='fecha_estreno', id="fecha_estreno", class="form-control")

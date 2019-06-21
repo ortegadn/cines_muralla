@@ -8,10 +8,67 @@ const sedeController = require("../controllers/sedeController");
 const tipoSalaController = require("../controllers/tipoSalaController");
 const tipoFormatoController = require("../controllers/tipoFormatoController");
 const salaController = require("../controllers/salaController");
-const generoController = require("../controllers/generoController")
+const generoController = require("../controllers/generoController");
+const idiomaController = require("../controllers/idiomaController");
+const censuraController = require("../controllers/censuraController");
+const repertorioController = require("../controllers/repertorioController");
 
 router.get("/", (req, res) => {
   res.render("home", { title: "Home" });
+});
+
+router.get("/agregar-repertorio", (req, res) => {
+  let Idioma;
+  let Censura;
+  let Pelicula;
+
+  peliculaController.GetPelicula((pelicula, err) => {
+    Pelicula = pelicula;
+  })
+
+  censuraController.GetCensura((censura, err) => {
+    Censura=censura;
+  });
+
+  idiomaController.GetIdioma((idioma, err) => {
+    Idioma = idioma;
+  });
+
+  sedeController.GetSede((sede, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener sede"
+      });
+    else{
+      console.log(Censura);
+      
+      res.render("./repertorio/agregarRepertorio", {sede,Idioma,Censura,Pelicula});
+    }
+  });
+});
+
+router.post("/agregarRepertorio", (req, res) => {
+  repertorioController.CreateRepertorio(req.body);
+  res.redirect("/administrar")
+})
+
+router.get("/agregar-censura", (req, res) => {
+  res.render("./repertorio/agregarCensura", {title: "Censura"});
+});
+
+router.post("/agregarCensura", (req, res) => {
+  censuraController.CreateCensura(req.body);
+  res.redirect("/administrar")
+});
+
+router.get("/agregar-idioma", (req, res) => {
+  res.render("./repertorio/agregarIdioma", {title: "Idioma"});
+});
+
+router.post("/agregarIdioma", (req, res) => {
+  idiomaController.CreateIdioma(req.body);
+  res.redirect("/administrar")
 });
 
 router.get("/agregar-tipo-sala", (req, res) => {
@@ -21,7 +78,7 @@ router.get("/agregar-tipo-sala", (req, res) => {
 router.post("/agregarTipoSala", (req, res) => {
   tipoSalaController.CreateTipoSala(req.body);
   res.redirect("/administrar")
-})
+});
 
 router.get("/agregar-tipo-formato", (req, res) => {
   res.render("./sala/agregarFormato", {title: "Tipo Formato"});
@@ -83,7 +140,16 @@ router.post("/agregarSede", (req, res) => {
 })
 /*----------------------PELICULAS------------------------------*/
 router.get("/agregar-pelicula", (req, res) => {
-  res.render("./pelicula/add_movie", { title: "Agregar Pelicula"});
+  generoController.GetGeneros((genero, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener generos"
+      });
+    else {
+      res.render("./pelicula/add_movie", {genero});
+    }
+  })
 })
 
 router.post("/createMovie" ,(req,res)=>{

@@ -1,10 +1,10 @@
 extends ../layout
 
 block content
-    .col-sm-9#form
-        h3 AGREGAR SALA
+    .col-sm-9#form(style="max-width: 100%;")
         hr
-        br
+        h3(style="margin-top:10px") Agregar sala
+        hr
         .card
             .card-body  
                 form(method="POST", action="/agregarSala" )
@@ -32,10 +32,12 @@ block content
                             br
                             input(type="number", name="cant_pasillos", id="cant_pasillos", class="form-control", min="1", max="5")
                         .col-sm-3
+                            br
                             label Cantidad de entradas
                             br
                             input(type="number", name="cant_entradas", id="cant_entradas", class="form-control", min="1", max="2")
                         .col-sm-3
+                            br
                             label Cantidad de salidas
                             br
                             input(type="number", name="cant_salidas", id="cant_salidas", class="form-control", min="1", max="3")

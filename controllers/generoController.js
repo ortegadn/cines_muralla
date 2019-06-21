@@ -13,4 +13,16 @@ controller.CreateGenero = async function(data){
     }
 };
 
+controller.GetGeneros = async function(callback){
+    try {
+        let response = await Genero_pelicula.findAll({ 
+        });
+        let genero = response.map(result => result.dataValues);
+        callback(genero, null);
+        
+    } catch (error) {
+        callback(error, null);
+    }
+}
+
 module.exports = controller;

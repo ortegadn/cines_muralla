@@ -3,13 +3,13 @@ extends ../layout
 block content
   .col-sm-9#form(style="max-width: 100%;")
       hr
-      h3(style="margin-top:10px") Agregar tipo de sala
+      h3(style="margin-top:10px") Agregar Idioma
       hr
       .card
         .card-body
-            form(method='POST' action='/agregarTipoSala')
+            form(method='POST' action='/agregarIdioma')
                 .row
                     .col-sm-3
-                        input(type='text', name="tipo_sala", id="tipo_sala",class="form-control")
+                        input(type='text', name="idioma", id="idioma",class="form-control")
                 br
                 button.btn.btn-primary(type='submit') Agregar

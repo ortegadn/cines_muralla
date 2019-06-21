@@ -1,26 +1,31 @@
 extends ../layout
 
 block content
-
-  .main-container
-    .row
-      .col-md-6.col-md-offset-3
-        h2 AGREGAR SEDE
-
-        // register form
-        form(method='POST' action='/agregarSede')
-          div.form-group
-            label(for='id_sede') Nombre Fiscal
-            input(type='text', name="id_sede", id="id_sede",class="form-control")
-          div.form-group
-            label(for='ubicacion') Ubicación
-            input(type='text', id="ubicacion", name='ubicacion', class="form-control")
-          div.form-group
-            label(for="horario_apertura") Hora de apertura
-            input(type='time', name='horario_apertura', id ='horario_apertura', class='form-control')
-          div.form-group
-            label(for='horario_cierre') Hora de cierre
-            input(type="time", name='horario_cierre', id="horario_cierre", class="form-control")
-          button.btn.btn-primary(type='submit') Agregar
+  .col-sm-9#form(style="max-width: 100%;")
+      hr
+      h3(style="margin-top:10px") Agregar sede
+      hr
+      .card
+        .card-body
+          form(method='POST' action='/agregarSede')
+            .row
+              .col-sm-3
+                label Nombre fiscal
+                br
+                input(type='text', name="id_sede", id="id_sede",class="form-control")
+              .col-sm-3
+                label Ubicación
+                br
+                input(type='text', id="ubicacion", name='ubicacion', class="form-control")
+              .col-sm-3
+                label Horario de apertura
+                br
+                input(type='time', name='horario_apertura', id ='horario_apertura', class='form-control')
+              .col-sm-3
+                label Horario de cierre
+                br
+                input(type="time", name='horario_cierre', id="horario_cierre", class="form-control")
+            br
+            button.btn.btn-primary(type='submit') Agregar
   
   

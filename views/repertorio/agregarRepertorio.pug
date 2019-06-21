@@ -1,0 +1,44 @@
+extends ../layout
+
+block content
+    .col-sm-9#form(style="max-width: 100%;")
+        hr
+        h3 Agregar repertorio a sede
+        br
+        .card
+            .card-body  
+                form(method="POST", action="/agregarRepertorio" )
+                    .row
+                        .col-sm-3
+                            label Seleccione la sede
+                            br
+                            select(name='id_sede', class="form-control", id="id_sede")
+                                -for(let i = 0; i < sede.length; i++)
+                                    option(value=sede[i].id_sede) #{sede[i].ubicacion}
+                        .col-sm-3
+                            label Seleccione la película
+                            br           
+                            select(name='id_pelicula', class="form-control", id="id_pelicula")
+                                -for(let i = 0; i < Pelicula.length; i++)
+                                    option(value=Pelicula[i].id_pelicula) #{Pelicula[i].titulo}
+                        .col-sm-3
+                            label Censura
+                            br
+                            select(name='id_censura', class="form-control", id="id_censura")
+                                -for(let i = 0; i < Censura.length; i++)
+                                    option(value=Censura[i].id_censura) #{Censura[i].censura}
+                        .col-sm-3
+                            label Idioma
+                            br
+                            select(name='id_idioma', class="form-control", id="id_idioma")
+                                -for(let i = 0; i < Idioma.length; i++)
+                                    option(value=Idioma[i].id_idioma) #{Idioma[i].idioma}
+                        .col-sm-3
+                            br
+                            label Subtítulo
+                            br
+                            select(name='id_subtitulo', class="form-control", id="id_subtitulo")
+                                -for(let i = 0; i < Idioma.length; i++)
+                                    option(value=Idioma[i].id_idioma) #{Idioma[i].idioma}
+                    br
+                    button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Agregar
