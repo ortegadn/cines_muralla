@@ -215,13 +215,48 @@ router.post("/delete-pelicula",(req,res)=>{
 
 /*------------------------COMIDA-------------------------*/
 router.get("/agregar-comida", (req, res) => {
-  res.render("agregar_comida", { title: "Agregar Comida"});
+  res.render("./comida/agregar_comida", { title: "Agregar Comida"});
 });
 
 router.post("/createComida" ,(req,res)=>{
   comidaController.CreateComida(req.body);
   res.redirect('/');
 });
+
+router.get("/get-comida", (req,res)=>{
+  comidaController.GetComida((comida, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener comida"
+      });
+    else {
+      res.render("./comida/agregar_comida", {comida});
+    }
+  });
+});
+
+router.get('/eliminar-comida', (req,res)=> {
+  comidaController.GetComida((comida, err) => {
+    if (err)
+      res.json({
+        success:false,
+      msg: "fallo en obtener comidas"
+    });
+  else {
+    res.render("./comida/eliminar_comida", {comida});
+    }
+  });
+}); 
+
+
+
+router.post("/delete-comida",(req,res)=>{
+  comidaController.DeleteComida(req.body,req.body.nombre_comida);
+  res.redirect('/');
+});
+
+
 /*-------------------------------------------------------*/
 
 

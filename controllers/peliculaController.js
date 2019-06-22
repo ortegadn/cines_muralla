@@ -1,6 +1,6 @@
 const sequelize = require('sequelize');
 const db = require('../config/database');
-const Pelicula = require('../models/Pelicula.js');
+const Pelicula = require('../models/Pelicula');
 
 const controller = {};
 

@@ -13,4 +13,26 @@ controller.CreateComida = async function(data){
     }
 };
 
+
+controller.GetComida = async function(callback){
+    try {
+        let response = await Comida.findAll({ 
+        });
+        let comida = response.map(result => result.dataValues);
+        callback(comida, null);
+        
+    } catch (error) {
+        callback(error, null);
+    }
+};
+
+
+controller.DeleteComida = async function (data){
+    console.log(data)
+    let response = Comida.destroy({
+        where:{
+            id_comida: data.id_comida
+        }
+    })
+}
 module.exports = controller;
