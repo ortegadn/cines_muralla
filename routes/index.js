@@ -54,6 +54,8 @@ router.get("/modificar-pelicula", (req,res)=>{
   });
 });
 
+
+
 router.post("/updateMovie", (req, res) => {
   console.log(req.body);
     if(!!req.body.titulo){ 
@@ -87,14 +89,42 @@ router.get("/agregar-comida", (req, res) => {
   res.render("agregar_comida", { title: "Agregar Comida"});
 });
 
+<<<<<<< HEAD
 router.post("/createComida" ,(req,res)=>{
   comidaController.CreateComida(req.body);
   res.redirect('/');
 });
 /*-------------------------------------------------------*/
+=======
+
+
+router.get("/ModificarSala", (req, res) => {
+  res.render("modificarSala", { title: "ModificarSala" });
+});
+
+router.get("/EliminarSala", (req, res) => {
+  res.render("EliminarSala", { title: "EliminarSala" });
+});
+
+router.get("/AgregarSala", (req, res) => {
+  res.render("AgregarSala", { title: "AgregarSala" });
+});
+
+router.get("/ModificarSede", (req, res) => {
+  res.render("ModificarSede", { title: "ModificarSede" });
+});
+>>>>>>> origin/DevVales
 
 router.get("/administrar", (req, res) => {
   res.render("administrar", { title: "administrar" });
+});
+
+router.get("/catalogocines", (req, res) => {
+  res.render("catalogocines", { title: "catalogocines" });
+});
+
+router.get("/peliculasxsede", (req, res) => {
+  res.render("peliculasxsede", { title: "peliculasxsede" });
 });
 
 router.get("/compra-boletos", (req, res) => {

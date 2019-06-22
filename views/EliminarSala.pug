@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    .col-sm-9#form
+        h3 ELIMINAR SALA
+        hr
+        br
+        .card
+            .card-body  
+                form(method="POST", action="/eliminar-pelicula" )
+                    .row
+                        .col-sm-3
+                            select(name='titulo', class="form-control", id="titulo")
+                               //- -for(let i = 0; i < pelicula.length; i++)
+                                  //-  option(value=pelicula[i].titulo) #{pelicula[i].titulo}
+                    br
+                    button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Eliminar Sala
