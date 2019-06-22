@@ -1,0 +1,64 @@
+extends ../layout
+
+block content
+    .col-sm-9#form(style="max-width: 100%;")
+        hr
+        h3(style="margin-top:10px") Agregar sala
+        hr
+        .card
+            .card-body  
+                form(method="POST", action="/agregarSala" )
+                    .row
+                        .col-sm-3
+                            br
+                            label Seleccione la sede
+                            br
+                            select(name='id_sede', class="form-control", id="id_sede")
+                                -for(let i = 0; i < sede.length; i++)
+                                    option(value=sede[i].id_sede) #{sede[i].ubicacion}
+                        .col-sm-3
+                            br
+                            label Sala
+                            br
+                            input(type="number", name="sala", id="sala", class="form-control", min="1")
+                        .col-sm-3
+                            br
+                            label Tecnología de la sala
+                            br           
+                            select(name='id_formato', class="form-control", id="id_formato")
+                                -for(let i = 0; i < Tformato.length; i++)
+                                    option(value=Tformato[i].id_formato) #{Tformato[i].tipo_formato}
+                        .col-sm-3
+                            br
+                            label Tipo de sala
+                            br
+                            select(name='id_tipo_sala', class="form-control", id="id_tipo_sala")
+                                -for(let i = 0; i < Tsala.length; i++)
+                                    option(value=Tsala[i].id_tipo_sala) #{Tsala[i].tipo_sala}
+                        .col-sm-3
+                            br
+                            label Cantidad de pasillos
+                            br
+                            input(type="number", name="cant_pasillos", id="cant_pasillos", class="form-control", min="1", max="5")
+                        .col-sm-3
+                            br
+                            label Cantidad de entradas
+                            br
+                            input(type="number", name="cant_entradas", id="cant_entradas", class="form-control", min="1", max="2")
+                        .col-sm-3
+                            br
+                            label Cantidad de salidas
+                            br
+                            input(type="number", name="cant_salidas", id="cant_salidas", class="form-control", min="1", max="3")
+                        .col-sm-3
+                            br
+                            label Cantidad de filas
+                            br
+                            input(type="number", name="cant_filas", id="cant_filas", class="form-control", min="1")
+                        .col-sm-3
+                            br
+                            label Cantidad de columnas
+                            br
+                            input(type="number", name="cant_columnas", id="cant_columnas", class="form-control", min="1")
+                    br
+                    button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Agregar

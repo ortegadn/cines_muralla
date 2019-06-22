@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 
 block content
 
@@ -19,12 +19,10 @@ block content
             label(for='duracion_min') Duracion:
             input(type='number', placeholder = 'Minutos' name='duracion_min', id ='duracion_min', class='form-control')
           div.form-group
-            label(for='genero') Genero:
-            select(name='genero', class="form-control", id="genero")
-              option(value="Accion") Accion
-              option(value="Aventura") Aventura
-              option(value="Drama") Drama
-              option(value="D") D
+            label(for='id_genero') Genero:
+            select(name='id_genero', class="form-control", id="id_genero")
+              -for(let i = 0; i < genero.length; i++)
+                option(value=genero[i].id_genero) #{genero[i].tipo_genero}
           div.form-group
             label(for='fecha_estreno') Fecha de estreno:
             input(type='date',  name='fecha_estreno', id="fecha_estreno", class="form-control")

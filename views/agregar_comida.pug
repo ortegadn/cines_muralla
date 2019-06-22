@@ -1,6 +1,7 @@
 extends layout
 
 block content
+<<<<<<< HEAD
 
   .main-container
     .row
@@ -25,3 +26,16 @@ block content
         
  
           
+=======
+  .col-sm-9#form(style="max-width: 100%;")
+      hr
+      h3(style="margin-top:10px") Agregar comida
+      .card
+        .card-body
+            form(method='POST' action='/createComida')
+                .row
+                    .col-sm-3
+                        input(type='text', name="nombre_comida", id="nombre_comida",class="form-control")
+                br
+                button.btn.btn-primary(type='submit') Agregar
+>>>>>>> d3899da72bfd08afbe7ab4048a92ff6faf03f957

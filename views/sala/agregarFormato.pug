@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  .col-sm-9#form(style="max-width: 100%;")
+      hr
+      h3(style="margin-top:10px") Agregar tipo de formato
+      hr
+      .card
+        .card-body
+            form(method='POST' action='/agregarTipoFormato')
+                .row
+                    .col-sm-3
+                        input(type='text', name="tipo_formato", id="tipo_formato",class="form-control")
+                br
+                button.btn.btn-primary(type='submit') Agregar

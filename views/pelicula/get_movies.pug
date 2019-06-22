@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 
 block content
     .col-sm-8#table
@@ -18,7 +18,7 @@ block content
             -for(let i = 0; i <pelicula.length; i++)
                 tr(style="text-align:center;")
                     th(scope='row')
-                        h5 #{pelicula[i].id}
+                        h5 #{pelicula[i].id_pelicula}
                     td
                         h5 #{pelicula[i].titulo}
                     td 
@@ -26,6 +26,6 @@ block content
                     td
                         h5 #{pelicula[i].duracion_min}
                     td
-                        h5 #{pelicula[i].genero}
+                        h5 #{pelicula[i].id_genero}
                     td
                         h5 #{pelicula[i].fecha_estreno}

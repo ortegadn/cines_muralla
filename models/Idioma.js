@@ -2,19 +2,19 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const Comida = sequelize.define("Comida", {
-    id_comida: {
+const Idioma = sequelize.define("Idioma", {
+    id_idioma: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         primaryKey: true,
+        allowNull: false,
         autoIncrement: true
     },
-    nombre_comida: {
+    idioma: {
         type: Sequelize.STRING,
         allowNull: false
-    },
-    
-} )
+    }
+})
 
-Comida.sync()
-module.exports = Comida;
+Idioma.sync();
+
+module.exports = Idioma;

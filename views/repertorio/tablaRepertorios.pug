@@ -1,0 +1,45 @@
+extends ../layout
+
+block content
+    .col-sm-9#form(style="max-width: 100%;")
+        hr
+        h3(style="margin-top:10px") Ver repertorio de peliculas por sede
+        hr
+        .card
+            .card-body  
+                form(method="POST", action="/visualizar-repertorios")
+                    .row
+                        .col-sm-3
+                            label Seleccione la sede
+                            br
+                            select(name='id_sede', class="form-control", id="id_sede")
+                                option(value="todos") Todas las sedes
+                                -for(let i = 0; i < Sede.length; i++)
+                                    option(value=Sede[i].id_sede) #{Sede[i].ubicacion}
+                        .col-sm-3
+                        .col-sm-3
+                        .col-sm-3
+                            button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Seleccionar
+            .card-body
+                p Visualizando repertorios: #{Sede[0].ubicacion}
+                table.table.bg-white(style="width: 100%")
+                    thead
+                        tr(style="text-align:center;")
+                            th(scope='col') Pelicula
+                            th(scope='col') Censura
+                            th(scope='col') Idioma
+                            th(scope='col') Subtítulos
+                            th(scope='col') Genero
+                    tbody
+                    -for(let i = 0; i < repertorios.length; i++)
+                        tr(style="text-align:center;")
+                            th(scope='row')
+                                h5 #{repertorios[i].pelicula.titulo}
+                            th(scope='row')
+                                h5 #{repertorios[i].censura.censura}
+                            th(scope='row')
+                                h5 #{repertorios[i].idioma.idioma}
+                            th(scope='row')   
+                                h5 #{repertorios[i].subtitulo.idioma.idioma}
+                            th(scope='row')
+                                h5 #{repertorios[i].pelicula.genero.tipo_genero}

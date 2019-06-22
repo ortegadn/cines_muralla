@@ -4,21 +4,27 @@ block content
   .container-fluid
     h2 ADMINISTRAR SITIO
     
-    .row
+    .row(style = 'margin-top: 15px; margin-bottom: 15px')
       .col(style='background-color:white;')
         .list-group
           a.list-group-item.list-group-item-action.active(href='#')
             | Sede
+<<<<<<< HEAD
           a.list-group-item.list-group-item-action(href='AgregarSede') Agregar nueva sede 
           a.list-group-item.list-group-item-action(href='ModificarSede') Modificar Sede 
           a.list-group-item.list-group-item-action(href='AgregarSala') Agregar sala 
           a.list-group-item.list-group-item-action(href='EliminarSala') Eliminar sala 
           a.list-group-item.list-group-item-action(href='ModificarSala') Modificar sala  
+=======
+          a.list-group-item.list-group-item-action(href='/agregar-sede') Agregar nueva sede 
+          a.list-group-item.list-group-item-action(href='#') Modificar Sede 
+>>>>>>> d3899da72bfd08afbe7ab4048a92ff6faf03f957
       .col(style='background-color:white;')
         .list-group
           a.list-group-item.list-group-item-action.active(href='#')
             | Sala
           a.list-group-item.list-group-item-action(href='agregar-sala') Agregar sala
+          a.list-group-item.list-group-item-action(href='visualizar-salas') Ver salas por sede
       .col(style='background-color:white;')
         .list-group
           a.list-group-item.list-group-item-action.active(href='#')
@@ -26,7 +32,7 @@ block content
           a.list-group-item.list-group-item-action(href='/agregar-pelicula') Agregar película
           a.list-group-item.list-group-item-action(href='/get-peliculas') Lista de películas
           a.list-group-item.list-group-item-action(href='/modificar-pelicula') Modificar película 
-          a.list-group-item.list-group-item-action(href='/eliminar-pelicula') Eliminar película 
+          a.list-group-item.list-group-item-action(href='/eliminar-pelicula') Eliminar película
       .col(style='background-color:white;')
         .list-group
           a.list-group-item.list-group-item-action.active(href='#')
@@ -35,3 +41,24 @@ block content
           a.list-group-item.list-group-item-action(href='#') Eliminar Comida
           a.list-group-item.list-group-item-action(href='#') Crear combo
           a.list-group-item.list-group-item-action(href='#') Eliminar combo
+    .row(style = 'margin-top: 15px; margin-bottom: 15px')
+      .col(style='background-color:white;')
+        .list-group
+          a.list-group-item.list-group-item-action.active(href='#')
+            | Repertorio por sede
+          a.list-group-item.list-group-item-action(href='/agregar-repertorio') Agregar película a repertorio
+          a.list-group-item.list-group-item-action(href='/visualizar-repertorios') Ver repertorio por sede
+      .col(style='background-color:white;')
+        .list-group
+          a.list-group-item.list-group-item-action.active(href='#')
+            | Funciones por sede
+          a.list-group-item.list-group-item-action(href='#') Agregar función a sede
+      .col(style='background-color:white;')
+        .list-group
+          a.list-group-item.list-group-item-action.active(href='#')
+            | Generales
+          a.list-group-item.list-group-item-action(href='/agregar-idioma') Agregar idioma
+          a.list-group-item.list-group-item-action(href='/agregar-censura') Agregar censura
+          a.list-group-item.list-group-item-action(href='agregar-genero') Agregar genero
+          a.list-group-item.list-group-item-action(href='agregar-tipo-formato') Agregar tipo de formato
+          a.list-group-item.list-group-item-action(href='agregar-tipo-sala') Agregar tipo de sala

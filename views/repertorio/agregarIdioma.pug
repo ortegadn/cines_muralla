@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  .col-sm-9#form(style="max-width: 100%;")
+      hr
+      h3(style="margin-top:10px") Agregar Idioma
+      hr
+      .card
+        .card-body
+            form(method='POST' action='/agregarIdioma')
+                .row
+                    .col-sm-3
+                        input(type='text', name="idioma", id="idioma",class="form-control")
+                br
+                button.btn.btn-primary(type='submit') Agregar

@@ -2,19 +2,20 @@ const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
 
-const Comida = sequelize.define("Comida", {
-    id_comida: {
+const Censura_pelicula = sequelize.define("Censura_pelicula", {
+    id_censura: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         primaryKey: true,
+        allowNull: false,
         autoIncrement: true
     },
-    nombre_comida: {
+    censura: {
         type: Sequelize.STRING,
         allowNull: false
-    },
-    
-} )
+    }
+})
 
-Comida.sync()
-module.exports = Comida;
+Censura_pelicula.sync();
+
+module.exports = Censura_pelicula;
+

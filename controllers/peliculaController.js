@@ -6,7 +6,6 @@ const controller = {};
 
 controller.CreatePelicula = async function(data){
     try{
-        console.log(data);
         Pelicula.create(data);
     }catch (error){
         callback (null, error);
@@ -23,7 +22,7 @@ controller.GetPelicula = async function(callback){
     } catch (error) {
         callback(error, null);
     }
-}
+};
 
 controller.UpdatePelicula = async function (data){
     let response = Pelicula.update({
@@ -33,7 +32,7 @@ controller.UpdatePelicula = async function (data){
         fecha_estreno: data.fecha_estreno
     },{
         where:{
-            titulo: data.titulo
+            id_pelicula: data.id_pelicula
         }
     });
 }
@@ -42,7 +41,7 @@ controller.DeletePelicula = async function (data){
     console.log(data)
     let response = Pelicula.destroy({
         where:{
-            titulo: data.titulo
+            id_pelicula: data.id_pelicula
         }
     })
 }

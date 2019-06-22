@@ -1,20 +1,57 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
-//const Sede = require('../models/Sede.js');
-const Tipo_sala = require('../models/Tipo_sala');
-const Tipo_formato = require('../models/Tipo_formato');
+const Sede = require('./Sede');
+const Tipo_sala = require('./Tipo_sala');
+const Tipo_formato = require('./Tipo_formato');
 
 const Sala = sequelize.define("Sala", {
-    id_sala: {
-        type: Sequelize.CHAR(1),
-        primaryKey: true,
-        allowNull: false
+        id_sala: {
+            type: Sequelize.INTEGER,
+            primaryKey: true,
+            allowNull: false,
+            autoIncrement:true
+        },
+        sala: {
+            type: Sequelize.INTEGER(1),
+            allowNull: false
+        },
+        cant_entradas: {
+            type: Sequelize.INTEGER,
+            allowNull: false
+        },
+        cant_salidas: {
+            type: Sequelize.INTEGER,
+            allowNull: false
+        },
+        cant_pasillos: {
+            type: Sequelize.INTEGER,
+            allowNull: false
+        },
+        cant_filas: {
+            type: Sequelize.INTEGER,
+            allowNull: false
+        },
+        cant_columnas: {
+            type: Sequelize.INTEGER,
+            allowNull: false
+        }
+    },
+    {
+        indexes: [
+            {
+                unique: true,
+                fields: ['id_sede','sala']
+            }
+        ]
     }
-});
+
+
+);
 
 //Tipo_formato.hasMany(Sala,{as:'idformato',foreignKey:'id_formato'});
-Sala.belongsTo(Tipo_formato, {as:'idformato',foreignKey:'id_formato'});
-Sala.belongsTo(Tipo_sala, {as:'idtiposala', foreignKey:'id_tipo_sala'});
+Sala.belongsTo(Tipo_formato, {as:'formato',foreignKey:'id_formato'});
+Sala.belongsTo(Tipo_sala, {as:'tiposala', foreignKey:'id_tipo_sala'});
 Sala.sync();
+
 module.exports = Sala;
