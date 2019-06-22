@@ -28,6 +28,6 @@ const Pelicula = sequelize.define("Pelicula", {
     }
 })
 
-Genero_pelicula.hasMany(Pelicula, {as:'idgenero', foreignKey:'id_genero'});
+Pelicula.belongsTo(Genero_pelicula, {as:'genero', foreignKey:'id_genero'});
 Pelicula.sync()
 module.exports = Pelicula;

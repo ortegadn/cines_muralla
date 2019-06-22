@@ -16,8 +16,7 @@ block content
           a.list-group-item.list-group-item-action.active(href='#')
             | Sala
           a.list-group-item.list-group-item-action(href='agregar-sala') Agregar sala
-          a.list-group-item.list-group-item-action(href='agregar-tipo-formato') Agregar tipo de formato
-          a.list-group-item.list-group-item-action(href='agregar-tipo-sala') Agregar tipo de sala
+          a.list-group-item.list-group-item-action(href='visualizar-salas') Ver salas por sede
       .col(style='background-color:white;')
         .list-group
           a.list-group-item.list-group-item-action.active(href='#')
@@ -26,8 +25,6 @@ block content
           a.list-group-item.list-group-item-action(href='/get-peliculas') Lista de películas
           a.list-group-item.list-group-item-action(href='/modificar-pelicula') Modificar película 
           a.list-group-item.list-group-item-action(href='/eliminar-pelicula') Eliminar película
-          a.list-group-item.list-group-item-action(href='agregar-genero') Agregar genero
-    .row(style = 'margin-top: 15px; margin-bottom: 15px')
       .col(style='background-color:white;')
         .list-group
           a.list-group-item.list-group-item-action.active(href='#')
@@ -36,16 +33,24 @@ block content
           a.list-group-item.list-group-item-action(href='#') Eliminar Comida
           a.list-group-item.list-group-item-action(href='#') Crear combo
           a.list-group-item.list-group-item-action(href='#') Eliminar combo
+    .row(style = 'margin-top: 15px; margin-bottom: 15px')
       .col(style='background-color:white;')
         .list-group
           a.list-group-item.list-group-item-action.active(href='#')
             | Repertorio por sede
           a.list-group-item.list-group-item-action(href='/agregar-repertorio') Agregar película a repertorio
-          a.list-group-item.list-group-item-action(href='#') Visualizar cartelera por sede
-          a.list-group-item.list-group-item-action(href='/agregar-idioma') Agregar idioma
-          a.list-group-item.list-group-item-action(href='/agregar-censura') Agregar censura
+          a.list-group-item.list-group-item-action(href='/visualizar-repertorios') Ver repertorio por sede
       .col(style='background-color:white;')
         .list-group
           a.list-group-item.list-group-item-action.active(href='#')
             | Funciones por sede
           a.list-group-item.list-group-item-action(href='#') Agregar función a sede
+      .col(style='background-color:white;')
+        .list-group
+          a.list-group-item.list-group-item-action.active(href='#')
+            | Generales
+          a.list-group-item.list-group-item-action(href='/agregar-idioma') Agregar idioma
+          a.list-group-item.list-group-item-action(href='/agregar-censura') Agregar censura
+          a.list-group-item.list-group-item-action(href='agregar-genero') Agregar genero
+          a.list-group-item.list-group-item-action(href='agregar-tipo-formato') Agregar tipo de formato
+          a.list-group-item.list-group-item-action(href='agregar-tipo-sala') Agregar tipo de sala

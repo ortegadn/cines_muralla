@@ -38,7 +38,7 @@ block content
                             label Subtítulo
                             br
                             select(name='id_subtitulo', class="form-control", id="id_subtitulo")
-                                -for(let i = 0; i < Idioma.length; i++)
-                                    option(value=Idioma[i].id_idioma) #{Idioma[i].idioma}
+                                -for(let i = 0; i < Subtitulo.length; i++)
+                                    option(value = Subtitulo[i].id_subtitulo) #{Subtitulo[i].idioma.idioma}
                     br
                     button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Agregar
