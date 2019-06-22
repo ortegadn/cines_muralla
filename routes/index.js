@@ -89,13 +89,6 @@ router.get("/agregar-comida", (req, res) => {
   res.render("agregar_comida", { title: "Agregar Comida"});
 });
 
-<<<<<<< HEAD
-router.post("/createComida" ,(req,res)=>{
-  comidaController.CreateComida(req.body);
-  res.redirect('/');
-});
-/*-------------------------------------------------------*/
-=======
 
 
 router.get("/ModificarSala", (req, res) => {
@@ -113,7 +106,6 @@ router.get("/AgregarSala", (req, res) => {
 router.get("/ModificarSede", (req, res) => {
   res.render("ModificarSede", { title: "ModificarSede" });
 });
->>>>>>> origin/DevVales
 
 router.get("/administrar", (req, res) => {
   res.render("administrar", { title: "administrar" });
