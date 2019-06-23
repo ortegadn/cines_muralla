@@ -23,6 +23,20 @@ controller.GetSede = async function(callback){
     } catch (error) {
         callback(error, null);
     }
+};
+
+controller.GetSedeByPK = async function(data, callback){
+    try {
+        let response = await Sede.findAll({ 
+            where: {
+                id_sede: data.id_sede
+            }
+        });
+        let sede = response.map(result => result.dataValues);
+        callback(sede, null);
+    } catch (error) {
+        callback(error, null);
+    }
 }
 
 module.exports = controller;

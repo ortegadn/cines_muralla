@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
+const Pelicula = require("./Pelicula");
 
 const Genero_pelicula = sequelize.define("Genero_Pelicula", {
     id_genero: {

@@ -6,17 +6,7 @@ const controller = {};
 
 controller.CreatePelicula = async function(data){
     try{
-        let response = await Pelicula.findAll({});
-        let pelicula = response.map(result => result.dataValues);
-        
-        pelicula.forEach(peli => {
-            if(peli.titulo == data.titulo){
-                console.log("YA EXISTE"); 
-            }else{
-                console.log("NO EXISTE")
-                Pelicula.create(data);
-            } 
-        });
+        Pelicula.create(data);
     }catch (error){
         callback (null, error);
     }

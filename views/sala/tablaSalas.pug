@@ -1,0 +1,55 @@
+extends ../layout
+
+block content
+    .col-sm-9#form(style="max-width: 100%;")
+        hr
+        h3(style="margin-top:10px") Ver salas por sede
+        hr
+        .card
+            .card-body  
+                form(method="POST", action="/visualizar-salas" )
+                    .row
+                        .col-sm-3
+                            label Seleccione la sede
+                            br
+                            select(name='id_sede', class="form-control", id="id_sede")
+                                option(value="todos") Todas las sedes
+                                -for(let i = 0; i < Sede.length; i++)
+                                    option(value=Sede[i].id_sede) #{Sede[i].ubicacion}
+                        .col-sm-3
+                        .col-sm-3
+                        .col-sm-3
+                            button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Seleccionar
+            .card-body
+                -if(salas.length != null)
+                    p Visualizando salas: #{salas[0].sede.ubicacion}
+                    table.table.bg-white(style="width: 100%")
+                        thead
+                            tr(style="text-align:center;")
+                                th(scope='col') Sede
+                                th(scope='col') Sala
+                                th(scope='col') Tipo de sala
+                                th(scope='col') Formato
+                                th(scope='col') N° Entradas
+                                th(scope='col') N° Salidas
+                                th(scope='col') N° Filas
+                                th(scope='col') N° Columnas
+                        tbody
+                        -for(let i = 0; i < salas.length; i++)
+                            tr(style="text-align:center;")
+                                th(scope='row')
+                                    h5 #{salas[i].sede.ubicacion}
+                                th(scope='row')
+                                    h5 #{salas[i].sala}
+                                th(scope='row')
+                                    h5 #{salas[i].tiposala.tipo_sala}
+                                th(scope='row')
+                                    h5 #{salas[i].formato.tipo_formato}
+                                th(scope='row')
+                                    h5 #{salas[i].cant_entradas}
+                                th(scope='row')
+                                    h5 #{salas[i].cant_salidas}
+                                th(scope='row')
+                                    h5 #{salas[i].cant_filas}
+                                th(scope='row')
+                                    h5 #{salas[i].cant_columnas}

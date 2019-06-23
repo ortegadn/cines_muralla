@@ -7,7 +7,12 @@ const controller = {};
 
 controller.CreateIdioma = async function(data){
     try{
-        Idioma.create(data);
+        Idioma.create(data).then(idioma => {
+            let data = {
+                id_idioma: idioma.id_idioma
+            }
+            Subtitulo_pelicula.create(data);
+        });
     }catch (error){
         callback (null, error);
     }

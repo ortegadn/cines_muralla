@@ -13,13 +13,136 @@ const idiomaController = require("../controllers/idiomaController");
 const censuraController = require("../controllers/censuraController");
 const repertorioController = require("../controllers/repertorioController");
 const comboController = require("../controllers/comboController");
+const subtituloController = require("../controllers/subtituloController");
+const funcionController = require("../controllers/funcionController");
 
 router.get("/", (req, res) => {
   res.render("home", { title: "Home" });
 });
 
+router.get("/seleccionar-sede", (req, res) => {
+  sedeController.GetSede((sede, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener sede"
+      });
+    else{
+      res.render("./funcion/seleccionarSede", {sede});
+    }
+  });
+});
+
+router.post("/seleccionarSede", (req, res) => {
+  let Sala;
+  salaController.GetSalasBySedeId(req.body, (sala, err) => {
+    Sala = sala;
+  });
+
+  repertorioController.GetRepertorioBySedeId(req.body, (repertorios, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener repertorios"
+      });
+    else{
+      console.log(Sala);
+      
+      res.render("./funcion/agregarFuncion", {repertorios, Sala});
+    }
+  })
+});
+
+router.post("/agregarFuncion", (req, res) => {
+  funcionController.CreateFuncion(req.body);
+  res.redirect("/administrar")
+})
+
+router.get("/visualizar-repertorios", (req, res) => {
+  let Sede;
+
+  sedeController.GetSede((sede, err) => {
+    Sede = sede;
+  });
+
+  repertorioController.GetRepertorios((repertorios, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener repertorios"
+      });
+    else{
+      res.render("./repertorio/verRepertorio", {repertorios, Sede});
+    }
+  })
+});
+
+router.post("/visualizar-repertorios", (req, res) => {
+  if(req.body.id_sede == "todos"){
+    res.redirect("/visualizar-repertorios");
+  }else{
+    let Sede;
+    sedeController.GetSede((sede, err) => {
+      Sede = sede;
+    });
+    repertorioController.GetRepertorioBySedeId(req.body, (repertorios, err) => {
+      if(err)
+        res.json({
+          success: false,
+          msg: "Fallo en obtener repertorios"
+        });
+      else{
+        res.render("./repertorio/tablaRepertorios", {repertorios, Sede});
+      }
+    })
+  }
+})
+
+router.get("/visualizar-salas", (req, res) => {
+  let Sede;
+
+  sedeController.GetSede((sede, err) => {
+    Sede = sede;
+  });
+
+  salaController.GetSalas((salas, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener sede"
+      });
+    else{
+      //salaUbic = salas[0].idsede.ubicacion
+      res.render("./sala/getSalaPorSede", {salas, Sede});
+    }
+  });
+});
+
+router.post("/visualizar-salas", (req, res) => {
+  if(req.body.id_sede == "todos"){
+    res.redirect("/visualizar-salas");
+  }else{
+    let Sede;
+    sedeController.GetSede((sede, err) => {
+      Sede = sede;
+    });
+    salaController.GetSalasBySedeId(req.body, (salas, err) => {
+      if(err)
+        res.json({
+          success: false,
+          msg: "Fallo en obtener sede"
+        });
+      else{
+        res.render("./sala/tablaSalas", {salas, Sede});
+      }
+    });
+  }
+  
+});
+
 router.get("/agregar-repertorio", (req, res) => {
   let Idioma;
+  let Subtitulo;
   let Censura;
   let Pelicula;
 
@@ -35,6 +158,12 @@ router.get("/agregar-repertorio", (req, res) => {
     Idioma = idioma;
   });
 
+  subtituloController.GetSubtitulos((subtitulo, err) => {
+    Subtitulo = subtitulo;
+    console.log(Subtitulo);
+    
+  })
+
   sedeController.GetSede((sede, err) => {
     if(err)
       res.json({
@@ -44,7 +173,7 @@ router.get("/agregar-repertorio", (req, res) => {
     else{
       console.log(Censura);
       
-      res.render("./repertorio/agregarRepertorio", {sede,Idioma,Censura,Pelicula});
+      res.render("./repertorio/agregarRepertorio", {sede,Idioma,Censura,Pelicula,Subtitulo});
     }
   });
 });
