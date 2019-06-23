@@ -261,6 +261,15 @@ router.get("/get-peliculas", (req,res)=>{
   });
 });
 
+router.post("/updateMovie", (req, res) => {
+  console.log(req.body);
+    if(!!req.body.id_pelicula){ 
+      console.log(req.body.id_pelicula);
+    peliculaController.UpdatePelicula(req.body,req.body.id_pelicula);
+  }
+  res.redirect('/get-peliculas');
+});
+
 router.get("/modificar-sede", (req, res) =>{
   sedeController.GetSede((sede, err)=> {
     if (err)
@@ -283,6 +292,19 @@ router.post("/updateSede", (req, res)=>{
   res.redirect('/administrar');
 });
 
+router.get("/lista-sedes", (req,res)=>{
+  sedeController.GetSede((sede, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener sedes"
+      });
+    else {
+      res.render("./sede/listaSede", {sede});
+    }
+  });
+});
+
 router.get("/modificar-pelicula", (req,res)=>{
   peliculaController.GetPelicula((pelicula, err) => {
     if (err)
@@ -298,14 +320,7 @@ router.get("/modificar-pelicula", (req,res)=>{
 
 
 
-router.post("/updateMovie", (req, res) => {
-  console.log(req.body);
-    if(!!req.body.id_pelicula){ 
-      console.log(req.body.id_pelicula);
-    peliculaController.UpdatePelicula(req.body,req.body.id_pelicula);
-  }
-  res.redirect('/get-peliculas');
-});
+
 
 router.get('/eliminar-pelicula', (req,res)=>{
   peliculaController.GetPelicula((pelicula, err) => {
