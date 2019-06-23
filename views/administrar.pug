@@ -2,8 +2,6 @@ extends layout
 
 block content
   .container-fluid
-    h2 ADMINISTRAR SITIO
-    
     .row(style = 'margin-top: 15px; margin-bottom: 15px')
       .col(style='background-color:white;')
         .list-group
@@ -44,7 +42,7 @@ block content
         .list-group
           a.list-group-item.list-group-item-action.active(href='#')
             | Funciones por sede
-          a.list-group-item.list-group-item-action(href='#') Agregar función a sede
+          a.list-group-item.list-group-item-action(href='/seleccionar-sede') Agregar función a sede
       .col(style='background-color:white;')
         .list-group
           a.list-group-item.list-group-item-action.active(href='#')
@@ -54,3 +52,8 @@ block content
           a.list-group-item.list-group-item-action(href='agregar-genero') Agregar genero
           a.list-group-item.list-group-item-action(href='agregar-tipo-formato') Agregar tipo de formato
           a.list-group-item.list-group-item-action(href='agregar-tipo-sala') Agregar tipo de sala
+      .col(style='background-color:white;')
+        .list-group
+          a.list-group-item.list-group-item-action.active(href='#')
+            | Ventas
+
