@@ -13,6 +13,7 @@ const idiomaController = require("../controllers/idiomaController");
 const censuraController = require("../controllers/censuraController");
 const repertorioController = require("../controllers/repertorioController");
 const subtituloController = require("../controllers/subtituloController");
+const factsalesController = require("../controllers/factsalesController");
 
 router.get("/", (req, res) => {
   res.render("home", { title: "Home" });
