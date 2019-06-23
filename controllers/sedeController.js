@@ -38,5 +38,15 @@ controller.GetSedeByPK = async function(data, callback){
         callback(error, null);
     }
 }
+controller.UpdateSede = async function (data){
+    let response = Sede.update({
+        horario_apertura: data.horario_apertura,
+        horario_cierre: data.horario_cierre,
+    },{
+        where:{
+            id_sede: data.id_sede
+        }
+    });
+}
 
 module.exports = controller;

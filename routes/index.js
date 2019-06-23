@@ -261,6 +261,28 @@ router.get("/get-peliculas", (req,res)=>{
   });
 });
 
+router.get("/modificar-sede", (req, res) =>{
+  sedeController.GetSede((sede, err)=> {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener sede"
+      });
+    else{
+      res.render("./sede/modificarSede", {sede});
+    }
+  });
+});
+
+router.post("/updateSede", (req, res)=>{
+  console.log(req.body);
+  if(!!req.body.id_sede){
+    console.log(req.body.id_sede);
+  sedeController.UpdateSede(req.body,req.body.id_sede);
+  }
+  res.redirect('/administrar');
+});
+
 router.get("/modificar-pelicula", (req,res)=>{
   peliculaController.GetPelicula((pelicula, err) => {
     if (err)

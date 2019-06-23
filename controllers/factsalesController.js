@@ -1,4 +1,4 @@
-const sequelize = require('sequelize');
+/*const sequelize = require('sequelize');
 const db = require('../config/database');
 const Pelicula = require('../models/Pelicula');
 const Sede = require('../models/Sede');
@@ -41,4 +41,4 @@ controller.GetPelicula = async function(callback){
     } catch (error) {
         callback(error, null);
     }
-};
+}; */
