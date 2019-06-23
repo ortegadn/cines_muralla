@@ -12,7 +12,7 @@ const Funcion = sequelize.define("Funcion", {
             autoIncrement: true
         },
         fecha: {
-            type: Sequelize.DATE,
+            type: Sequelize.DATEONLY,
             allowNull: false 
         },
         hora_inicio: {
@@ -23,8 +23,8 @@ const Funcion = sequelize.define("Funcion", {
     {
         indexes: [{
             unique: true,
-            name: "sala_fecha_hora",
-            fields: ['id_sala', 'fecha', 'hora_inicio']
+            name: "repertorio_sala_fecha_hora",
+            fields: ['id_repertorio','id_sala','fecha','hora_inicio']
         }]
     }
 

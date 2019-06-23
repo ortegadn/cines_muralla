@@ -25,7 +25,7 @@ controller.GetSede = async function(callback){
     }
 };
 
-controller.GetSedeByPK = async function(data, callback){
+controller.GetSedeByID = async function(data, callback){
     try {
         let response = await Sede.findAll({ 
             where: {

@@ -3,11 +3,11 @@ extends ../layout
 block content
     .col-sm-9#form(style="max-width: 100%;")
         hr
-        h3(style="margin-top:10px") Agregar funcion a sede
+        h3(style="margin-top:10px") Eliminar película de repertorio
         hr
         .card
             .card-body  
-                form(method="POST", action="/agregar-funcion")
+                form(method="POST", action="/quitar-pelicula-repertorio")
                     .row
                         .col-sm-3
                             label Seleccione la sede

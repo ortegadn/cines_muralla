@@ -27,7 +27,6 @@ block content
                         .col-sm-3
                             label Género
                             br
-                            label(for='id_genero') Genero:
                             select(name='id_genero', class="form-control", id="id_genero", class="form-control")
                                 option(value="1") Acción
                                 option(value="2") Aventura
@@ -38,6 +37,7 @@ block content
                                 option(value="7") Suspenso
                                 option(value="8") Ciencia Ficción
                         .col-sm-3
+                            br
                             label Fecha de estreno
                             br
                             input(type="date", name="fecha_estreno", id="fecha_estreno", class="form-control")

@@ -9,7 +9,11 @@ const Sede = sequelize.define("Sede", {
             type: Sequelize.INTEGER,
             primaryKey: true,
             allowNull: false,
-            autoIncrement: true
+            autoIncrement: true,
+        },
+        nombre_fiscal: {
+            type: Sequelize.STRING,
+            allowNull: false
         },
         ubicacion: {
             type: Sequelize.STRING,
@@ -28,7 +32,7 @@ const Sede = sequelize.define("Sede", {
         indexes: [
             {
                 unique: true,
-                fields: ['id_sede','ubicacion']
+                fields: ['id_sede','ubicacion', 'nombre_fiscal']
             }
         ]
     }
@@ -36,6 +40,6 @@ const Sede = sequelize.define("Sede", {
 
 //Sede.hasMany(Sala,{as:'idsede',foreignKey:'id_sede'});
 Sala.belongsTo(Sede, {as: 'sede', foreignKey: 'id_sede'});
-Repertorio_pelicula.belongsTo(Sede, {as:'sede', foreignKey: 'id_sede'})
+Repertorio_pelicula.belongsTo(Sede, {as:"sede", foreignKey: "id_sede"});
 Sede.sync();
 module.exports = Sede;

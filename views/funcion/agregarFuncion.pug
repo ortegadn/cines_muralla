@@ -3,10 +3,10 @@ extends ../layout
 block content
     .col-sm-9#form(style="max-width: 100%;")
         hr
-        h3 Agregar repertorio a sede 
+        h3 Agregar función a sede #{sedeUbic}
         br
         .card
-            .card-body  
+            .card-body 
                 form(method="POST", action="/agregarFuncion" )
                     .row
                         .col-sm-3
