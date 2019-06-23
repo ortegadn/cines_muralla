@@ -12,6 +12,7 @@ const generoController = require("../controllers/generoController");
 const idiomaController = require("../controllers/idiomaController");
 const censuraController = require("../controllers/censuraController");
 const repertorioController = require("../controllers/repertorioController");
+const comboController = require("../controllers/comboController");
 
 router.get("/", (req, res) => {
   res.render("home", { title: "Home" });
@@ -136,6 +137,11 @@ router.get("/agregar-sede", (req, res) => {
 
 router.post("/agregarSede", (req, res) => {
   sedeController.CreateSede(req.body);
+  res.redirect('/administrar');
+})
+
+router.post("/agregarCombo", (req, res) => {
+  comboController.CreateCombo(req.body);
   res.redirect('/administrar');
 })
 /*----------------------PELICULAS------------------------------*/
