@@ -1,1 +1,24 @@
 extends ../layout
+
+
+block content
+    .col-sm-9#form(style="max-width: 100%;")
+        hr
+        h3 crear nuevo combo 
+        br
+        .card
+            .card-body  
+                form(method="POST", action='/createCombo' )
+                    .row
+                        .col-sm-3
+                            label nombre del combo 
+                            br
+                            input(type='text', name="nombre_combo", id="nombre_combo",class="form-control")
+                        .col-sm-3
+                            label Seleccione los productos que desea agregar al combo 
+                            br           
+                            select(name='', class="form-control", id="")
+                                //- -for(let i = 0; i < comida.length; i++)
+                                    option(value=comida[i].id_comida) #{comida[i].nombre_comida} //
+                    br
+                    button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Agregar                

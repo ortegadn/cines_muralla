@@ -12,6 +12,7 @@ const generoController = require("../controllers/generoController");
 const idiomaController = require("../controllers/idiomaController");
 const censuraController = require("../controllers/censuraController");
 const repertorioController = require("../controllers/repertorioController");
+const comboController = require("../controllers/comboController");
 
 router.get("/", (req, res) => {
   res.render("home", { title: "Home" });
@@ -24,7 +25,7 @@ router.get("/agregar-repertorio", (req, res) => {
 
   peliculaController.GetPelicula((pelicula, err) => {
     Pelicula = pelicula;
-  })
+  });
 
   censuraController.GetCensura((censura, err) => {
     Censura=censura;
@@ -249,17 +250,66 @@ router.get('/eliminar-comida', (req,res)=> {
   });
 }); 
 
-
-
 router.post("/delete-comida",(req,res)=>{
   comidaController.DeleteComida(req.body,req.body.nombre_comida);
   res.redirect('/');
 });
 
 
-/*-------------------------------------------------------*/
+/*--------------------------COMBOS------------------------*/
+router.get("/agregar-combo", (req, res) => {
+  comidaController.GetComida((comida, err) => {
+    if (err)
+    res.json({
+      success: false,
+      msg: "Fallo en obtener comidas"
+    });
+  else {
+    res.render("./comida/combo", {genero});
+  }
+})
+})
+
+router.post("/createCombo" ,(req,res)=>{
+  comboController.CreateCombo(req.body);
+  res.redirect('/get-combo');
+});
+
+router.get("/get-combo", (req,res)=>{
+  comboController.GetCombo((combo, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener combo"
+      });
+    else {
+      res.render("./comida/combo", {combo});
+    }
+  });
+});
 
 
+router.get('/eliminar-combo', (req,res)=> {
+  comboController.GetCombo((combo, err) => {
+    if (err)
+      res.json({
+        success:false,
+      msg: "fallo en obtener combos"
+    });
+  else {
+    res.render("./comida/eliminar_combo", {combo});
+    }
+  });
+}); 
+
+
+router.post("/delete-combo",(req,res)=>{
+  comboController.DeleteCombo(req.body,req.body.nombre_combo);
+  res.redirect('/get-combo');
+});
+
+
+/*------------------------OTROS---------------------------*/
 
 router.get("/ModificarSala", (req, res) => {
   res.render("modificarSala", { title: "ModificarSala" });

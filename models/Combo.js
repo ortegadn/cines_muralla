@@ -1,7 +1,8 @@
 const Sequelize = require("sequelize");
 Sequelize.Promise = global.Promise;
 const sequelize = require("../config/database");
-const Comida = require('../models/Comida');
+const Comida = require("./Comida");
+
 
 const Combo = sequelize.define("Combo", {
     id_combo: {
@@ -17,6 +18,7 @@ const Combo = sequelize.define("Combo", {
     
 })
 
-Combo.hasMany(Comida,{as:'idcombo',foreignKey:'id_combo'});
-Combo.sync()
+Comida.hasMany(Combo, {as:'idcomida', foreignKey:'id_comida'});
+/*Combo.hasMany(Comida,{as:'idcombo',foreignKey:'id_combo'});*/
+Combo.sync();
 module.exports = Combo;

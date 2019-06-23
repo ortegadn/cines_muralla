@@ -24,5 +24,14 @@ controller.GetCombo = async function(callback){
         callback(error, null);
     }
 };
+
+controller.DeleteCombo = async function (data){
+    console.log(data)
+    let response = Combo.destroy({
+        where:{
+            id_combo: data.id_combo
+        }
+    })
+}
  
 module.exports = controller;
