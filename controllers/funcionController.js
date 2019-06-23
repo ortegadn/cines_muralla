@@ -2,6 +2,7 @@ const sequelize = require('sequelize');
 const db = require('../config/database');
 const Funcion = require('../models/Funcion');
 const Repertorio_pelicula = require('./repertorioController');
+const Sala = require("../models/Sala");
 
 const controller = {};
 
@@ -19,7 +20,10 @@ controller.GetFuncionByRepertorioId = async function(data, callback){
         Funcion.findAll({ 
             where: {
                 id_repertorio: data.id_repertorio
-            }
+            }, 
+            include:[
+                {model: Sala, as: 'sala'}
+            ]
         }).then(repertorios => {
             let repertorio_sede = repertorios.map(result => result.dataValues);
             callback(repertorio_sede); 

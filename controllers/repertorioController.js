@@ -42,7 +42,7 @@ controller.GetRepertorioById = async function(data, callback){
             where: {
                 id_repertorio: data.id_repertorio
             },
-            include: [{model: Idioma, as: 'idioma'}, {model: Censura_pelicula, as: 'censura'}, {model: Sede, as: 'sede'}, {model: Pelicula, as: 'pelicula', include: [{model:Genero_pelicula, as:'genero'}]}, {model: Subtitulo_pelicula, as: 'subtitulo', include: [{model: Idioma, as: 'idioma'}]}]
+            include: [{model: Idioma, as: 'idioma'}, {model: Censura_pelicula, as: 'censura'}, {model: Sede, as: 'sede'}, {model: Pelicula, as: 'pelicula', include: [{model: Genero_pelicula, as:'genero'}]}, {model: Subtitulo_pelicula, as: 'subtitulo', include: [{model: Idioma, as: 'idioma'}]}]
         }).then(repertorios => {
             let repertorio = repertorios.map(result => result.dataValues);
             callback(repertorio); 

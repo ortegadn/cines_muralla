@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+    .col-sm-9#form(style="max-width: 100%;")
+        .card
+            .card-body  
+                form(method="POST", action="/select-pelicula-repertorio")
+                    label Seleccione la sede
+                    br        
+                    .row                       
+                        -for(let i = 0; i < sede.length; i++)
+                            .col-sm-3
+                                button.btn.btn-primary.btn-lg(type="submit", style="position:relative;", value = sede[i].id_sede, name="id_sede", id="id_sede", class="form-control") #{sede[i].ubicacion}
+                        .col-sm-3
+                        .col-sm-3
+                        .col-sm-3
+                             Seleccionar

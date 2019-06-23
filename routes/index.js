@@ -19,6 +19,54 @@ router.get("/", (req, res) => {
   res.render("home", { title: "Home" });
 });
 
+router.get("/sede-boleto", (req, res) => {
+  sedeController.GetSede((sede, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener sede"
+      });
+    else{
+      res.render("./compraBoletos/seleccionarSedeCompra", {sede});
+    }
+  });
+});
+
+router.post("/select-pelicula-repertorio", (req, res) => {
+  console.log(req.body);
+  
+  repertorioController.GetRepertorioBySedeId(req.body, (repertorio, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener repertorio"
+      });
+    else{
+      res.render("./compraBoletos/seleccionarRepertorioSede", {repertorio});
+    }
+  })
+});
+
+router.post("/select-funcion-pelicula", (req, res) => {
+  console.log(req.body);
+  
+  funcionController.GetFuncionByRepertorioId(req.body, (funciones, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener funciones"
+      });
+    else{
+      res.render("./compraBoletos/seleccionarFuncionSede", {funciones});
+    }
+  })
+});
+
+router.post("/select-butacas", (req, res) => {
+
+})
+
+/*-------------------------------------------------------------------*/
 router.get("/select-funcion-sede", (req, res) => {
   sedeController.GetSede((sede, err) => {
     if(err)
