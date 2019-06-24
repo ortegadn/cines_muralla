@@ -1,6 +1,7 @@
 const sequelize = require('sequelize');
 const db = require('../config/database');
 const Pelicula = require('../models/Pelicula.js');
+const Genero_pelicula = require('../models/Genero_pelicula');
 
 const controller = {};
 
@@ -14,7 +15,8 @@ controller.CreatePelicula = async function(data){
 
 controller.GetPelicula = async function(callback){
     try {
-        let response = await Pelicula.findAll({ 
+        let response = await Pelicula.findAll({
+            include: {model: Genero_pelicula, as:'genero'}
         });
         let pelicula = response.map(result => result.dataValues);
         callback(pelicula, null);

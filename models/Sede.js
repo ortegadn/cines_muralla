@@ -32,7 +32,7 @@ const Sede = sequelize.define("Sede", {
         indexes: [
             {
                 unique: true,
-                fields: ['id_sede','ubicacion', 'nombre_fiscal']
+                fields: ['ubicacion', 'nombre_fiscal']
             }
         ]
     }

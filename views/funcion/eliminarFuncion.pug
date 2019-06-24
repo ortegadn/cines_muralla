@@ -14,6 +14,6 @@ block content
                             br           
                             select(name='id_funcion', class="form-control", id="id_funcion", style="    width: 160%;")
                                 -for(let i = 0; i < funciones.length; i++)
-                                    option(value=funciones[i].id_funcion) Fecha: #{funciones[i].fecha} Hora: #{funciones[i].hora_inicio} 
+                                    option(value=funciones[i].id_funcion) Sala: #{funciones[i].sala.sala} Fecha: #{funciones[i].fecha} Hora: #{funciones[i].hora_inicio} 
                     br
                     button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Eliminar
