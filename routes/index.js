@@ -14,6 +14,7 @@ const censuraController = require("../controllers/censuraController");
 const repertorioController = require("../controllers/repertorioController");
 const subtituloController = require("../controllers/subtituloController");
 const funcionController = require("../controllers/funcionController");
+const factsalesController = require("../controllers/factsalesController");
 
 router.get("/", (req, res) => {
   res.render("home", { title: "Home" });
@@ -483,7 +484,50 @@ router.get("/get-peliculas", (req,res)=>{
 });
 /*------------------------------------------------------------------*/
 
-/*------------------------------------------------------------------*/
+router.post("/updateMovie", (req, res) => {
+  console.log(req.body);
+    if(!!req.body.id_pelicula){ 
+      console.log(req.body.id_pelicula);
+    peliculaController.UpdatePelicula(req.body,req.body.id_pelicula);
+  }
+  res.redirect('/get-peliculas');
+});
+
+router.get("/modificar-sede", (req, res) =>{
+  sedeController.GetSede((sede, err)=> {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener sede"
+      });
+    else{
+      res.render("./sede/modificarSede", {sede});
+    }
+  });
+});
+
+router.post("/updateSede", (req, res)=>{
+  console.log(req.body);
+  if(!!req.body.id_sede){
+    console.log(req.body.id_sede);
+  sedeController.UpdateSede(req.body,req.body.id_sede);
+  }
+  res.redirect('/administrar');
+});
+
+router.get("/lista-sedes", (req,res)=>{
+  sedeController.GetSede((sede, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener sedes"
+      });
+    else {
+      res.render("./sede/listaSede", {sede});
+    }
+  });
+});
+
 router.get("/modificar-pelicula", (req,res)=>{
   peliculaController.GetPelicula((pelicula, err) => {
     if (err)
@@ -506,7 +550,6 @@ router.post("/updateMovie", (req, res) => {
   res.redirect('/get-peliculas');
 });
 /*------------------------------------------------------------------*/
-
 /*------------------------------------------------------------------*/
 router.get('/eliminar-pelicula', (req,res)=>{
   peliculaController.GetPelicula((pelicula, err) => {
