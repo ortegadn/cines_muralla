@@ -15,6 +15,7 @@ const repertorioController = require("../controllers/repertorioController");
 const subtituloController = require("../controllers/subtituloController");
 const funcionController = require("../controllers/funcionController");
 const factsalesController = require("../controllers/factsalesController");
+const comboController = require("../controllers/comboController");
 
 router.get("/", (req, res) => {
   res.render("home", { title: "Home" });
@@ -315,7 +316,7 @@ router.get("/agregar-repertorio", (req, res) => {
 
   peliculaController.GetPelicula((pelicula, err) => {
     Pelicula = pelicula;
-  })
+  });
 
   censuraController.GetCensura((censura, err) => {
     Censura=censura;
@@ -572,14 +573,100 @@ router.post("/delete-pelicula",(req,res)=>{
 
 /*------------------------------------------------------------------*/
 router.get("/agregar-comida", (req, res) => {
-  res.render("agregar_comida", { title: "Agregar Comida"});
+  res.render("./comida/agregar_comida", { title: "Agregar Comida"});
 });
 
 router.post("/createComida" ,(req,res)=>{
   comidaController.CreateComida(req.body);
-  res.redirect('/');
+  res.redirect('/administrar');
 });
-/*------------------------------------------------------------------*/
+
+router.get("/get-comida", (req,res)=>{
+  comidaController.GetComida((comida, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener comida"
+      });
+    else {
+      res.render("./comida/agregar_comida", {comida});
+    }
+  });
+});
+
+router.get('/eliminar-comida', (req,res)=> {
+  comidaController.GetComida((comida, err) => {
+    if (err)
+      res.json({
+        success:false,
+      msg: "fallo en obtener comidas"
+    });
+  else {
+    res.render("./comida/eliminar_comida", {comida});
+    }
+  });
+}); 
+
+router.post("/delete-comida",(req,res)=>{
+  comidaController.DeleteComida(req.body,req.body.nombre_comida);
+  res.redirect('/administrar');
+});
+
+
+/*--------------------------COMBOS------------------------*/
+router.get("/agregar-combo", (req, res) => {
+  comidaController.GetComida((comida, err) => {
+    if (err)
+    res.json({
+      success: false,
+      msg: "Fallo en obtener comidas"
+    });
+  else {
+    res.render("./comida/combo", {genero});
+  }
+})
+})
+
+router.post("/createCombo" ,(req,res)=>{
+  comboController.CreateCombo(req.body);
+  res.redirect('/get-combo');
+});
+
+router.get("/get-combo", (req,res)=>{
+  comboController.GetCombo((combo, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener combo"
+      });
+    else {
+      res.render("./comida/combo", {combo});
+    }
+  });
+});
+
+
+router.get('/eliminar-combo', (req,res)=> {
+  comboController.GetCombo((combo, err) => {
+    if (err)
+      res.json({
+        success:false,
+      msg: "fallo en obtener combos"
+    });
+  else {
+    res.render("./comida/eliminar_combo", {combo});
+    }
+  });
+}); 
+
+
+router.post("/delete-combo",(req,res)=>{
+  comboController.DeleteCombo(req.body,req.body.nombre_combo);
+  res.redirect('/get-combo');
+});
+
+
+/*------------------------OTROS---------------------------*/
 
 /*------------------------------------------------------------------*/
 router.get("/ModificarSala", (req, res) => {

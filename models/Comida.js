@@ -24,5 +24,5 @@ const Comida = sequelize.define("Comida", {
 }
 )
 
-Comida.sync()
+Comida.sync();
 module.exports = Comida;

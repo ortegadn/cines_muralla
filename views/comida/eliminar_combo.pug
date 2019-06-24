@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+    .col-sm-9#form
+        h3 ELIMINAR COMBO
+        hr
+        br
+        .card
+            .card-body  
+                form(method="POST", action="/delete-combo" )
+                    .row
+                        .col-sm-3
+                            select(name='id_combo', class="form-control", id="id_combo")
+                                -for(let i = 0; i < combo.length; i++)
+                                    option(value=combo[i].id_combo) #{combo[i].nombre_combo}
+                    br
+                    button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Eliminar
