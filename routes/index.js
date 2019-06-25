@@ -101,7 +101,7 @@ router.post("/select-funcion-pelicula", (req, res) => {
 });
 
 router.post("/select-butacas", (req, res) => {
-
+  res.redirect("/");
 })
 
 /*-------------------------------------------------------------------*/
