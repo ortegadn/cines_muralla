@@ -13,7 +13,16 @@ const Idioma = sequelize.define("Idioma", {
         type: Sequelize.STRING,
         allowNull: false
     }
-})
+},
+    {
+        indexes: [
+            {
+                unique: true,
+                fields: ['idioma']
+            }
+        ]
+    }
+)
 
 Idioma.sync();
 

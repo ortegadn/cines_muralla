@@ -15,7 +15,16 @@ const Tipo_formato = sequelize.define("Tipo_formato", {
         type: Sequelize.STRING,
         allowNull: false
     }
-})
+},
+    {
+        indexes: [
+            {
+                unique: true,
+                fields: ['tipo_formato']
+            }
+        ]
+    }
+)
 
 //Sede.hasMany(Sala,{as:'idsede',foreignKey:'id_sede'});
 

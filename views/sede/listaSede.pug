@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+    .col-sm-8#table
+        h3#text LISTA DE SEDES
+        hr
+        br
+        table.table.bg-white
+            thead
+                tr(style="text-align:center;")
+                  th(scope='col') Nombre Fiscal
+                  th(scope='col') Ubicacion
+                  th(scope='col') Horario Apertura
+                  th(scope='col') Horario Cierre
+
+            tbody
+            -for(let i = 0; i <sede.length; i++)
+                tr(style="text-align:center;")
+                    th(scope='row')
+                        h5 #{sede[i].id_sede}
+                    td
+                        h5 #{sede[i].ubicacion}
+                    td 
+                        h5 #{sede[i].horario_apertura}
+                    td
+                        h5 #{sede[i].horario_cierre}

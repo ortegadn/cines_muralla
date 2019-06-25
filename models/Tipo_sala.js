@@ -14,7 +14,16 @@ const Tipo_sala = sequelize.define("Tipo_sala", {
         type: Sequelize.STRING,
         allowNull: false
     }
-})
+},
+    {
+        indexes: [
+            {
+                unique: true,
+                fields: ['tipo_sala']
+            }
+        ]
+    }
+)
 
 //Sede.hasMany(Sala,{as:'idsede',foreignKey:'id_sede'});
 Tipo_sala.sync();

@@ -12,9 +12,17 @@ const Comida = sequelize.define("Comida", {
     nombre_comida: {
         type: Sequelize.STRING,
         allowNull: false
-    },
-    
-} )
+    } 
+},
+{
+    indexes: [
+        {
+            unique: true,
+            fields: ['nombre_comida']
+        }
+    ]
+}
+)
 
 Comida.sync();
 module.exports = Comida;

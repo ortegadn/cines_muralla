@@ -24,14 +24,14 @@ const Repertorio_pelicula = sequelize.define("Repertorio_pelicula", {
             {
                 unique: true,
                 name: "pelicula_idioma_sub",
-                fields: ['id_pelicula', 'id_idioma', 'id_subtitulo']
+                fields: ['id_sede','id_pelicula', 'id_idioma', 'id_subtitulo']
             }
         ]
     }
 
 )
 
-//Sede.hasMany(Repertorio_pelicula, {as:"sede", foreignKey: "id_sede"});
+
 Repertorio_pelicula.belongsTo(Subtitulo_pelicula, {as:"subtitulo", foreignKey: "id_subtitulo"});
 Repertorio_pelicula.belongsTo(Pelicula, {as:"pelicula", foreignKey:"id_pelicula"});
 Repertorio_pelicula.belongsTo(Censura_pelicula, {as:"censura", foreignKey:"id_censura"});

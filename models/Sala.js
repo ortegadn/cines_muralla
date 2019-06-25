@@ -13,7 +13,7 @@ const Sala = sequelize.define("Sala", {
             autoIncrement:true
         },
         sala: {
-            type: Sequelize.INTEGER(1),
+            type: Sequelize.STRING,
             allowNull: false
         },
         cant_entradas: {
@@ -41,12 +41,10 @@ const Sala = sequelize.define("Sala", {
         indexes: [
             {
                 unique: true,
-                fields: ['id_sede','sala']
+                fields: ['id_sede', 'sala']
             }
         ]
     }
-
-
 );
 
 //Tipo_formato.hasMany(Sala,{as:'idformato',foreignKey:'id_formato'});

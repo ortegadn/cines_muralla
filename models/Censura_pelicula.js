@@ -13,7 +13,16 @@ const Censura_pelicula = sequelize.define("Censura_pelicula", {
         type: Sequelize.STRING,
         allowNull: false
     }
-})
+},
+    {
+        indexes: [
+            {
+                unique: true,
+                fields: ['censura']
+            }
+        ]
+    }
+)
 
 Censura_pelicula.sync();
 

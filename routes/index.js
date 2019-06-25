@@ -15,11 +15,158 @@ const repertorioController = require("../controllers/repertorioController");
 const comboController = require("../controllers/comboController");
 const subtituloController = require("../controllers/subtituloController");
 const funcionController = require("../controllers/funcionController");
+const factsalesController = require("../controllers/factsalesController");
 
 router.get("/", (req, res) => {
   res.render("home", { title: "Home" });
 });
 
+router.get("/sede-boleto", (req, res) => {
+  sedeController.GetSede((sede, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener sede"
+      });
+    else{
+      res.render("./compraBoletos/seleccionarSedeCompra", {sede});
+    }
+  });
+});
+
+router.post("/select-pelicula-repertorio", (req, res) => {
+  console.log(req.body);
+  
+  repertorioController.GetRepertorioBySedeId(req.body, (repertorio, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener repertorio"
+      });
+    else{
+      res.render("./compraBoletos/seleccionarRepertorioSede", {repertorio});
+    }
+  })
+});
+
+router.post("/select-funcion-pelicula", (req, res) => {
+  console.log(req.body);
+  
+  funcionController.GetFuncionByRepertorioId(req.body, (funciones, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener funciones"
+      });
+    else{
+      res.render("./compraBoletos/seleccionarFuncionSede", {funciones});
+    }
+  })
+});
+
+router.post("/select-butacas", (req, res) => {
+
+})
+
+/*-------------------------------------------------------------------*/
+router.get("/select-funcion-sede", (req, res) => {
+  sedeController.GetSede((sede, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener sede"
+      });
+    else{
+      res.render("./funcion/deleteSelectSede", {sede});
+    }
+  });
+})
+
+router.post("/seleccionar-pelicula", (req, res) => {
+  let sedeUbic;
+
+  sedeController.GetSedeByID(req.body, (sede, err) => {
+    sedeUbic = sede[0].ubicacion;  
+  });
+
+  repertorioController.GetRepertorioBySedeId(req.body, (repertorios, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener repertorios"
+      });
+    else{
+      res.render("./funcion/seleccionarRepertorio", {repertorios, sedeUbic});
+    }
+  })
+});
+
+router.post("/eliminar-funcion", (req, res) => {
+  let peliculaTitulo;
+  let idioma;
+  let subtitulo;
+
+  repertorioController.GetRepertorioById(req.body, (repertorios, err) => {
+    peliculaTitulo = repertorios[0].pelicula.titulo;
+    idioma = repertorios[0].idioma.idioma;
+    subtitulo = repertorios[0].subtitulo.idioma.idioma;
+  });
+
+  funcionController.GetFuncionByRepertorioId(req.body, (funciones, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener funciones"
+      });
+    else{
+      res.render("./funcion/eliminarFuncion", {funciones, peliculaTitulo, idioma, subtitulo});
+    }
+  })
+});
+
+router.post("/deleteFuncion", (req, res) => {
+  funcionController.DeleteFuncion(req.body);
+  res.redirect("/administrar");
+})
+
+/*------------------------------------------------------------------*/
+router.get("/seleccionar-repertorio", (req, res) => {
+  sedeController.GetSede((sede, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener sede"
+      });
+    else{
+      res.render("./repertorio/selectSedeRepertorio", {sede});
+    }
+  });
+});
+
+router.post("/quitar-pelicula-repertorio", (req, res) => {
+  let sedeUbic;
+
+  sedeController.GetSedeByID(req.body, (sede, err) => {
+    sedeUbic = sede[0].ubicacion;  
+  });
+
+  repertorioController.GetRepertorioBySedeId(req.body, (repertorios, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener repertorios"
+      });
+    else{
+      res.render("./repertorio/eliminarRepertorio", {repertorios, sedeUbic});
+    }
+  })
+});
+
+router.post("/eliminarRepertorio", (req, res) => {
+  repertorioController.DeleteRepertorio(req.body);
+  res.redirect("/visualizar-repertorios");
+});
+/*------------------------------------------------------------------*/
 router.get("/seleccionar-sede", (req, res) => {
   sedeController.GetSede((sede, err) => {
     if(err)
@@ -33,10 +180,16 @@ router.get("/seleccionar-sede", (req, res) => {
   });
 });
 
-router.post("/seleccionarSede", (req, res) => {
+router.post("/agregar-funcion", (req, res) => {
   let Sala;
+  let sedeUbic;
+
   salaController.GetSalasBySedeId(req.body, (sala, err) => {
     Sala = sala;
+  });
+
+  sedeController.GetSedeByID(req.body, (sede, err) => {
+    sedeUbic = sede[0].ubicacion;  
   });
 
   repertorioController.GetRepertorioBySedeId(req.body, (repertorios, err) => {
@@ -46,9 +199,7 @@ router.post("/seleccionarSede", (req, res) => {
         msg: "Fallo en obtener repertorios"
       });
     else{
-      console.log(Sala);
-      
-      res.render("./funcion/agregarFuncion", {repertorios, Sala});
+      res.render("./funcion/agregarFuncion", {repertorios, Sala, sedeUbic});
     }
   })
 });
@@ -57,7 +208,9 @@ router.post("/agregarFuncion", (req, res) => {
   funcionController.CreateFuncion(req.body);
   res.redirect("/administrar")
 })
+/*------------------------------------------------------------------*/
 
+/*------------------------------------------------------------------*/
 router.get("/visualizar-repertorios", (req, res) => {
   let Sede;
 
@@ -85,6 +238,12 @@ router.post("/visualizar-repertorios", (req, res) => {
     sedeController.GetSede((sede, err) => {
       Sede = sede;
     });
+    
+    let sedeUbic;
+    sedeController.GetSedeByID(req.body, (sede, err) => {
+      sedeUbic = sede[0].ubicacion;  
+    });
+
     repertorioController.GetRepertorioBySedeId(req.body, (repertorios, err) => {
       if(err)
         res.json({
@@ -92,12 +251,14 @@ router.post("/visualizar-repertorios", (req, res) => {
           msg: "Fallo en obtener repertorios"
         });
       else{
-        res.render("./repertorio/tablaRepertorios", {repertorios, Sede});
+        res.render("./repertorio/tablaRepertorios", {repertorios, Sede, sedeUbic});
       }
     })
   }
 })
+/*------------------------------------------------------------------*/
 
+/*------------------------------------------------------------------*/
 router.get("/visualizar-salas", (req, res) => {
   let Sede;
 
@@ -126,6 +287,12 @@ router.post("/visualizar-salas", (req, res) => {
     sedeController.GetSede((sede, err) => {
       Sede = sede;
     });
+
+    let sedeUbic;
+    sedeController.GetSedeByID(req.body, (sede, err) => {
+      sedeUbic = sede[0].ubicacion;  
+    });
+    
     salaController.GetSalasBySedeId(req.body, (salas, err) => {
       if(err)
         res.json({
@@ -133,13 +300,14 @@ router.post("/visualizar-salas", (req, res) => {
           msg: "Fallo en obtener sede"
         });
       else{
-        res.render("./sala/tablaSalas", {salas, Sede});
+        res.render("./sala/tablaSalas", {salas, Sede, sedeUbic});
       }
     });
-  }
-  
+  } 
 });
+/*------------------------------------------------------------------*/
 
+/*------------------------------------------------------------------*/
 router.get("/agregar-repertorio", (req, res) => {
   let Idioma;
   let Subtitulo;
@@ -182,7 +350,9 @@ router.post("/agregarRepertorio", (req, res) => {
   repertorioController.CreateRepertorio(req.body);
   res.redirect("/administrar")
 })
+/*------------------------------------------------------------------*/
 
+/*------------------------------------------------------------------*/
 router.get("/agregar-censura", (req, res) => {
   res.render("./repertorio/agregarCensura", {title: "Censura"});
 });
@@ -191,7 +361,9 @@ router.post("/agregarCensura", (req, res) => {
   censuraController.CreateCensura(req.body);
   res.redirect("/administrar")
 });
+/*------------------------------------------------------------------*/
 
+/*------------------------------------------------------------------*/
 router.get("/agregar-idioma", (req, res) => {
   res.render("./repertorio/agregarIdioma", {title: "Idioma"});
 });
@@ -200,7 +372,9 @@ router.post("/agregarIdioma", (req, res) => {
   idiomaController.CreateIdioma(req.body);
   res.redirect("/administrar")
 });
+/*------------------------------------------------------------------*/
 
+/*------------------------------------------------------------------*/
 router.get("/agregar-tipo-sala", (req, res) => {
   res.render("./sala/agregarTipoSala", {title: "Tipo Sala"});
 });
@@ -209,7 +383,9 @@ router.post("/agregarTipoSala", (req, res) => {
   tipoSalaController.CreateTipoSala(req.body);
   res.redirect("/administrar")
 });
+/*------------------------------------------------------------------*/
 
+/*------------------------------------------------------------------*/
 router.get("/agregar-tipo-formato", (req, res) => {
   res.render("./sala/agregarFormato", {title: "Tipo Formato"});
 });
@@ -218,7 +394,9 @@ router.post("/agregarTipoFormato", (req, res) => {
   tipoFormatoController.CreateTipoFormato(req.body);
   res.redirect("/administrar")
 })
+/*------------------------------------------------------------------*/
 
+/*------------------------------------------------------------------*/
 router.get("/agregar-sala", (req, res) => {
   let Tformato;
   let Tsala;
@@ -250,7 +428,9 @@ router.post("/agregarSala", (req, res) => {
   salaController.CreateSala(req.body);
   res.redirect('/administrar')
 })
+/*------------------------------------------------------------------*/
 
+/*------------------------------------------------------------------*/
 router.get("/agregar-genero", (req, res) => {
   res.render("./pelicula/agregarGenero", {title: "Tipo Genero"});
 });
@@ -259,7 +439,9 @@ router.post("/agregarGenero", (req, res) => {
   generoController.CreateGenero(req.body);
   res.redirect("/administrar")
 })
+/*------------------------------------------------------------------*/
 
+/*------------------------------------------------------------------*/
 router.get("/agregar-sede", (req, res) => {
   res.render("./sede/agregarSede", { title: "Agregar Sede" });
 });
@@ -268,7 +450,9 @@ router.post("/agregarSede", (req, res) => {
   sedeController.CreateSede(req.body);
   res.redirect('/administrar');
 })
-/*----------------------PELICULAS------------------------------*/
+/*------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------*/
 router.get("/agregar-pelicula", (req, res) => {
   generoController.GetGeneros((genero, err) => {
     if (err)
@@ -299,6 +483,51 @@ router.get("/get-peliculas", (req,res)=>{
     }
   });
 });
+/*------------------------------------------------------------------*/
+
+router.post("/updateMovie", (req, res) => {
+  console.log(req.body);
+    if(!!req.body.id_pelicula){ 
+      console.log(req.body.id_pelicula);
+    peliculaController.UpdatePelicula(req.body,req.body.id_pelicula);
+  }
+  res.redirect('/get-peliculas');
+});
+
+router.get("/modificar-sede", (req, res) =>{
+  sedeController.GetSede((sede, err)=> {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener sede"
+      });
+    else{
+      res.render("./sede/modificarSede", {sede});
+    }
+  });
+});
+
+router.post("/updateSede", (req, res)=>{
+  console.log(req.body);
+  if(!!req.body.id_sede){
+    console.log(req.body.id_sede);
+  sedeController.UpdateSede(req.body,req.body.id_sede);
+  }
+  res.redirect('/administrar');
+});
+
+router.get("/lista-sedes", (req,res)=>{
+  sedeController.GetSede((sede, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener sedes"
+      });
+    else {
+      res.render("./sede/listaSede", {sede});
+    }
+  });
+});
 
 router.get("/modificar-pelicula", (req,res)=>{
   peliculaController.GetPelicula((pelicula, err) => {
@@ -313,8 +542,6 @@ router.get("/modificar-pelicula", (req,res)=>{
   });
 });
 
-
-
 router.post("/updateMovie", (req, res) => {
   console.log(req.body);
     if(!!req.body.id_pelicula){ 
@@ -323,7 +550,8 @@ router.post("/updateMovie", (req, res) => {
   }
   res.redirect('/get-peliculas');
 });
-
+/*------------------------------------------------------------------*/
+/*------------------------------------------------------------------*/
 router.get('/eliminar-pelicula', (req,res)=>{
   peliculaController.GetPelicula((pelicula, err) => {
     if (err)
@@ -341,9 +569,9 @@ router.post("/delete-pelicula",(req,res)=>{
   peliculaController.DeletePelicula(req.body,req.body.titulo);
   res.redirect('/get-peliculas');
 });
-/*-------------------------------------------------------------*/
+/*------------------------------------------------------------------*/
 
-/*------------------------COMIDA-------------------------*/
+/*------------------------------------------------------------------*/
 router.get("/agregar-comida", (req, res) => {
   res.render("./comida/agregar_comida", { title: "Agregar Comida"});
 });
@@ -352,6 +580,7 @@ router.post("/createComida" ,(req,res)=>{
   comidaController.CreateComida(req.body);
   res.redirect('/');
 });
+<<<<<<< HEAD
 
 router.get("/get-comida", (req,res)=>{
   comidaController.GetComida((comida, err) => {
@@ -439,7 +668,11 @@ router.post("/delete-combo",(req,res)=>{
 
 
 /*------------------------OTROS---------------------------*/
+=======
+/*------------------------------------------------------------------*/
+>>>>>>> origin/DevErick
 
+/*------------------------------------------------------------------*/
 router.get("/ModificarSala", (req, res) => {
   res.render("modificarSala", { title: "ModificarSala" });
 });
@@ -462,10 +695,6 @@ router.get("/administrar", (req, res) => {
 
 router.get("/catalogocines", (req, res) => {
   res.render("catalogocines", { title: "catalogocines" });
-});
-
-router.get("/peliculasxsede", (req, res) => {
-  res.render("peliculasxsede", { title: "peliculasxsede" });
 });
 
 router.get("/compra-boletos", (req, res) => {

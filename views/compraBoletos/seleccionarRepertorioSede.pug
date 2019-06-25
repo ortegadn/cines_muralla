@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+    .col-sm-9#form(style="max-width: 100%;")
+        .card
+            .card-body  
+                form(method="POST", action="/select-funcion-pelicula")
+                    label Seleccione la película
+                    br        
+                    .row                       
+                        -for(let i = 0; i < repertorio.length; i++)
+                            .col-sm-3
+                                button.btn.btn-primary.btn-lg(type="submit", style="position:relative;     height: 180px;", value = repertorio[i].id_repertorio, name="id_repertorio", id="id_repertorio", class="form-control") 
+                                    p #{repertorio[i].pelicula.titulo} 
+                                    p Idioma: #{repertorio[i].idioma.idioma} 
+                                    p Subtítulos: #{repertorio[i].subtitulo.idioma.idioma}
+                                    p Censura: #{repertorio[i].censura.censura}
+                                    p Genero: #{repertorio[i].pelicula.genero.tipo_genero}

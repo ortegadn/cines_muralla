@@ -4,6 +4,7 @@ const Sala = require('../models/Sala.js');
 const Tipo_formato = require('../models/Tipo_formato.js');
 const Tipo_sala = require('../models/Tipo_sala.js');
 const Sede = require('../models/Sede');
+const Butaca = require('../models/Butaca')
 
 const controller = {};
 

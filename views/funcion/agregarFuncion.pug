@@ -3,10 +3,10 @@ extends ../layout
 block content
     .col-sm-9#form(style="max-width: 100%;")
         hr
-        h3 Agregar repertorio a sede 
+        h3 Agregar función a sede #{sedeUbic}
         br
         .card
-            .card-body  
+            .card-body 
                 form(method="POST", action="/agregarFuncion" )
                     .row
                         .col-sm-3
@@ -20,7 +20,7 @@ block content
                             br
                             select(name='id_sala', class="form-control", id="id_sala")
                                 -for(let i = 0; i < Sala.length; i++)
-                                    option(value = Sala[i].sala) #{Sala[i].sala}
+                                    option(value = Sala[i].id_sala) #{Sala[i].sala}
                         .col-sm-3
                             label Fecha
                             br

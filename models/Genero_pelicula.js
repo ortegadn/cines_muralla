@@ -14,7 +14,16 @@ const Genero_pelicula = sequelize.define("Genero_Pelicula", {
         type: Sequelize.STRING,
         allowNull: false
     }
-})
+},
+    {
+        indexes: [
+            {
+                unique: true,
+                fields: ['tipo_genero']
+            }
+        ]
+    }
+)
 
 Genero_pelicula.sync();
 
