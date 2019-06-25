@@ -21,6 +21,10 @@ router.get("/", (req, res) => {
   res.render("home", { title: "Home" });
 });
 
+router.get("/compra-comida", (req, res) => {
+  res.render("./compraComida/compra-comida");
+})
+
 router.get("/sede-boleto", (req, res) => {
   sedeController.GetSede((sede, err) => {
     if(err)
@@ -617,20 +621,61 @@ router.post("/delete-comida",(req,res)=>{
 router.get("/agregar-combo", (req, res) => {
   comidaController.GetComida((comida, err) => {
     if (err)
-    res.json({
-      success: false,
-      msg: "Fallo en obtener comidas"
-    });
-  else {
-    res.render("./comida/combo", {genero});
-  }
+      res.json({
+        success: false,
+        msg: "Fallo en obtener comidas"
+      });
+    else {
+      res.render("./comida/combo", {comida});
+    }
 })
 })
 
-router.post("/createCombo" ,(req,res)=>{
-  comboController.CreateCombo(req.body);
-  res.redirect('/get-combo');
+let comidasSelec = [];
+
+router.post("/crear-combo" ,(req,res)=>{
+  let comboName = req.body.nombre_combo;
+
+  comidasSelec.push(req.body);
+  //console.log(comidasSelec);
+
+  comidaController.GetComida((comida, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener comidas"
+      });
+    else {
+      res.render("./comida/nextComidaCombo", {comida, comidasSelec, comboName});
+    }
+  });
 });
+
+router.post("/crear-combo#" ,(req,res)=>{
+  let comboName = req.body.nombre_combo;
+  comidasSelec.push(req.body);
+  //console.log(comidasSelec);
+
+  comidaController.GetComida((comida, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener comidas"
+      });
+    else {
+      res.render("./comida/nextComidaCombo", {comida, comidasSelec, comboName});
+    }
+  });
+});
+
+router.post("/agregar-lista-comida", (req, res) => {
+  comidasSelec.forEach(comida => {
+    comboController.CreateCombo(comida)
+  });
+  comidasSelec = [];
+  console.log(comidasSelec);
+  res.redirect("/administrar");
+}); 
 
 router.get("/get-combo", (req,res)=>{
   comboController.GetCombo((combo, err) => {
@@ -662,7 +707,7 @@ router.get('/eliminar-combo', (req,res)=> {
 
 router.post("/delete-combo",(req,res)=>{
   comboController.DeleteCombo(req.body,req.body.nombre_combo);
-  res.redirect('/get-combo');
+  res.redirect('/administrar');
 });
 
 
@@ -687,10 +732,6 @@ router.get("/ModificarSede", (req, res) => {
 
 router.get("/administrar", (req, res) => {
   res.render("administrar", { title: "administrar" });
-});
-
-router.get("/catalogocines", (req, res) => {
-  res.render("catalogocines", { title: "catalogocines" });
 });
 
 router.get("/compra-boletos", (req, res) => {

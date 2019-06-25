@@ -15,10 +15,8 @@ const Combo = sequelize.define("Combo", {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    
 })
 
-Comida.hasMany(Combo, {as:'idcomida', foreignKey:'id_comida'});
-/*Combo.hasMany(Comida,{as:'idcombo',foreignKey:'id_combo'});*/
+Combo.belongsTo(Comida, {as: 'comida', foreignKey: 'id_comida'})
 Combo.sync();
 module.exports = Combo;

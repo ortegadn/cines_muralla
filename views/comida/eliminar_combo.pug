@@ -2,7 +2,7 @@ extends ../layout
 
 block content
     .col-sm-9#form
-        h3 ELIMINAR COMBO
+        h3 Eliminar comida de combo
         hr
         br
         .card
@@ -10,8 +10,8 @@ block content
                 form(method="POST", action="/delete-combo" )
                     .row
                         .col-sm-3
-                            select(name='id_combo', class="form-control", id="id_combo")
+                            select(name='id_combo', class="form-control", id="id_combo", style="width: 200%;")
                                 -for(let i = 0; i < combo.length; i++)
-                                    option(value=combo[i].id_combo) #{combo[i].nombre_combo}
+                                    option(value=combo[i].id_combo) Combo: #{combo[i].nombre_combo} / Comida: #{combo[i].comida.nombre_comida}
                     br
                     button.btn.btn-primary.btn-lg(type="submit", style="position:relative; left:45%;" ) Eliminar
