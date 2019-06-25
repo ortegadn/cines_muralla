@@ -4,25 +4,19 @@ extends ../layout
 block content
     .col-sm-9#form(style="max-width: 100%;")
         hr
-        h3 Crear combo 
+        h3 Agregar combo 
         br
         .card
             .card-body  
-                form(method="POST", action='/crear-combo')
+                form(method="POST", action='/agregarCombo')
                     .row
                         .col-sm-3
                             br
                             label Nombre del combo 
                             br
                             input(type='text', name="nombre_combo", id="nombre_combo",class="form-control")
-                        .col-sm-3
-                            label Seleccione los productos que desea agregar al combo 
-                            br           
-                            select(name='id_comida', class="form-control", id= 'id_comida')
-                                -for(let i = 0; i < comida.length; i++)
-                                    option(value = comida[i].id_comida) #{comida[i].nombre_comida}
                     .row
                         .col-sm-3
                             br
-                            button.btn.btn-primary.btn-lg(type="submit" ) Seleccionar    
+                            button.btn.btn-primary.btn-lg(type="submit") Agregar   
                                 

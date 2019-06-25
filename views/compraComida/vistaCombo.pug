@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+    .col-sm-9#form(style="max-width: 100%;")
+        .card
+            .card-body  
+                form(method="POST", action="/comboComida")
+                    label Comidas del combo #{comboC[0].combo.nombre_combo}
+                    br        
+                    .row                       
+                        -for(let i = 0; i < comboC.length; i++)
+                            .col-sm-3
+                                p #{comboC[i].comida.nombre_comida}

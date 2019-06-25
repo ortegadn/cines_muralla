@@ -16,9 +16,7 @@ controller.CreateCombo = async function(data){
 
 controller.GetCombo = async function(callback){
     try {
-        let response = await Combo.findAll({ 
-            include: [{model: Comida, as: 'comida'}]
-        });
+        let response = await Combo.findAll({});
         let combo = response.map(result => result.dataValues);
         callback(combo, null);
         

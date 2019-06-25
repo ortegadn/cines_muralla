@@ -4,7 +4,7 @@ block content
     .col-sm-9#form(style="max-width: 100%;")
         .card
             .card-body  
-                form(method="POST", action="/compraComida")
+                form(method="POST", action="/comidaCompra")
                     label Comidas
                     br        
                     .row                       
@@ -16,11 +16,11 @@ block content
     .col-sm-9#form(style="max-width: 100%;")
         .card
             .card-body  
-                form(method="POST", action="/compraComida")
+                form(method="POST", action="/comboCompra")
                     label Combos
                     br        
                     .row                       
                         -for(let i = 0; i < Combo.length; i++)
                             .col-sm-3
-                                button.btn.btn-primary.btn-lg(type="submit", style="position:relative;     height: 180px;", name="id_combo", id="id_combo", class="form-control") 
+                                button.btn.btn-primary.btn-lg(type="submit", style="position:relative;     height: 180px;", name="id_combo", id="id_combo", class="form-control", value=Combo[i].id_combo) 
                                     p #{Combo[i].nombre_combo}

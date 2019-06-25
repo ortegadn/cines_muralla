@@ -17,6 +17,5 @@ const Combo = sequelize.define("Combo", {
     },
 })
 
-Combo.belongsTo(Comida, {as: 'comida', foreignKey: 'id_comida'})
 Combo.sync();
 module.exports = Combo;

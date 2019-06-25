@@ -16,6 +16,7 @@ const subtituloController = require("../controllers/subtituloController");
 const funcionController = require("../controllers/funcionController");
 const factsalesController = require("../controllers/factsalesController");
 const comboController = require("../controllers/comboController");
+const combocomidaController = require("../controllers/combocomidaController");
 
 router.get("/", (req, res) => {
   res.render("home", { title: "Home" });
@@ -37,7 +38,23 @@ router.get("/compra-comida", (req, res) => {
       res.render("./compraComida/compra-comida", {comida, Combo});
     }
   });
-  
+});
+
+router.post("/comidaCompra", (req, res) => {
+  res.redirect("/");
+});
+
+router.post("/comboCompra", (req, res) => {
+  combocomidaController.GetComboComidaByIdCombo(req.body, (comboC, err) => {
+    if(err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener comidas de combo"
+      });
+    else{
+      res.render("./compraComida/vistaCombo", {comboC});
+    }
+  })
 })
 
 router.get("/sede-boleto", (req, res) => {
@@ -634,6 +651,21 @@ router.post("/delete-comida",(req,res)=>{
 
 /*--------------------------COMBOS------------------------*/
 router.get("/agregar-combo", (req, res) => {
+  res.render("./comida/combo");
+});
+
+router.post("/agregarCombo", (req, res) => {
+  comboController.CreateCombo(req.body);
+  res.redirect('/administrar');
+})
+
+router.get("/comida-combo", (req, res) => {
+  let Combo
+
+  comboController.GetCombo((combo, err) => {
+    Combo = combo;
+  });
+
   comidaController.GetComida((comida, err) => {
     if (err)
       res.json({
@@ -641,35 +673,20 @@ router.get("/agregar-combo", (req, res) => {
         msg: "Fallo en obtener comidas"
       });
     else {
-      res.render("./comida/combo", {comida});
-    }
-})
-})
-
-let comidasSelec = [];
-
-router.post("/crear-combo" ,(req,res)=>{
-  let comboName = req.body.nombre_combo;
-
-  comidasSelec.push(req.body);
-  //console.log(comidasSelec);
-
-  comidaController.GetComida((comida, err) => {
-    if (err)
-      res.json({
-        success: false,
-        msg: "Fallo en obtener comidas"
-      });
-    else {
-      res.render("./comida/nextComidaCombo", {comida, comidasSelec, comboName});
+      res.render("./comida/agregar-comida-combo", {comida, Combo});
     }
   });
 });
 
-router.post("/crear-combo#" ,(req,res)=>{
-  let comboName = req.body.nombre_combo;
+let comidasSelec = [];
+
+router.post("/agregar-comida-combo" ,(req,res)=>{
+  let comboId = req.body.id_combo;
+  console.log("----------------" + comboId + "----------------");
+  
+
   comidasSelec.push(req.body);
-  //console.log(comidasSelec);
+  console.log(comidasSelec);
 
   comidaController.GetComida((comida, err) => {
     if (err)
@@ -678,14 +695,34 @@ router.post("/crear-combo#" ,(req,res)=>{
         msg: "Fallo en obtener comidas"
       });
     else {
-      res.render("./comida/nextComidaCombo", {comida, comidasSelec, comboName});
+      res.render("./comida/nextComidaCombo", {comida, comidasSelec, comboId});
+    }
+  });
+});
+
+router.post("/agregar-comida-combo#" ,(req,res)=>{
+  let comboId = req.body.id_combo;
+  console.log(comboId);
+  
+
+  comidasSelec.push(req.body);
+  console.log(comidasSelec);
+
+  comidaController.GetComida((comida, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener comidas"
+      });
+    else {
+      res.render("./comida/nextComidaCombo", {comida, comidasSelec, comboId});
     }
   });
 });
 
 router.post("/agregar-lista-comida", (req, res) => {
   comidasSelec.forEach(comida => {
-    comboController.CreateCombo(comida)
+    combocomidaController.AddComidaToCombo(comida);
   });
   comidasSelec = [];
   console.log(comidasSelec);
@@ -707,21 +744,21 @@ router.get("/get-combo", (req,res)=>{
 
 
 router.get('/eliminar-combo', (req,res)=> {
-  comboController.GetCombo((combo, err) => {
+  combocomidaController.GetComboComidaCombo((comboC, err) => {
     if (err)
       res.json({
         success:false,
       msg: "fallo en obtener combos"
     });
-  else {
-    res.render("./comida/eliminar_combo", {combo});
+    else {
+      res.render("./comida/eliminar_combo", {comboC});
     }
-  });
+  })
 }); 
 
 
 router.post("/delete-combo",(req,res)=>{
-  comboController.DeleteCombo(req.body,req.body.nombre_combo);
+  combocomidaController.DeleteCombo(req.body)
   res.redirect('/administrar');
 });
 

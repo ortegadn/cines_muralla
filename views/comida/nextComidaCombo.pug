@@ -8,13 +8,13 @@ block content
         br
         .card
             .card-body  
-                form(method="POST", action='/crear-combo#' )
+                form(method="POST", action='/agregar-comida-combo#' )
                     .row
                         .col-sm-3
                             br
-                            label Nombre del combo 
+                            label ID del combo 
                             br
-                            input(type='text', name="nombre_combo", id="nombre_combo",class="form-control", value = comboName)
+                            input(type='text', name="id_combo", id="id_combo",class="form-control", value = comboId)
                         .col-sm-3
                             label Seleccione los productos que desea agregar al combo 
                             br           
@@ -28,20 +28,20 @@ block content
                                     thead
                                     tr(style="text-align:center;")
                                         th(scope='col') ID Comida
-                                        th(scope='col') Nombre Combo
+                                        th(scope='col') ID Combo
                                     tbody
                                     -for(let i = 0; i < comidasSelec.length; i++)
                                         tr(style="text-align:center;")
                                             th(scope='row')
                                                 h5 #{comidasSelec[i].id_comida}
                                             th(scope='row')
-                                                h5 #{comidasSelec[i].nombre_combo}
+                                                h5 #{comidasSelec[i].id_combo}
                     .row
                         .col-sm-3
                             br
                             button.btn.btn-primary.btn-lg(type="submit") Seleccionar
 
-                form(method="POST", action='/agregar-lista-comida' )
+                form(method="POST", action='/agregar-lista-comida')
                     br
                     button.btn.btn-primary.btn-lg(type="submit") Agregar Combo
                                 
