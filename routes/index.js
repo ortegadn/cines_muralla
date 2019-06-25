@@ -22,7 +22,22 @@ router.get("/", (req, res) => {
 });
 
 router.get("/compra-comida", (req, res) => {
-  res.render("./compraComida/compra-comida");
+  let Combo;
+  comboController.GetCombo((combo, err) => {
+    Combo = combo;
+  });
+
+  comidaController.GetComida((comida, err) => {
+    if (err)
+      res.json({
+        success: false,
+        msg: "Fallo en obtener comida"
+      });
+    else {
+      res.render("./compraComida/compra-comida", {comida, Combo});
+    }
+  });
+  
 })
 
 router.get("/sede-boleto", (req, res) => {
