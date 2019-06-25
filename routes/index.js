@@ -580,7 +580,6 @@ router.post("/createComida" ,(req,res)=>{
   comidaController.CreateComida(req.body);
   res.redirect('/');
 });
-<<<<<<< HEAD
 
 router.get("/get-comida", (req,res)=>{
   comidaController.GetComida((comida, err) => {
@@ -668,9 +667,6 @@ router.post("/delete-combo",(req,res)=>{
 
 
 /*------------------------OTROS---------------------------*/
-=======
-/*------------------------------------------------------------------*/
->>>>>>> origin/DevErick
 
 /*------------------------------------------------------------------*/
 router.get("/ModificarSala", (req, res) => {

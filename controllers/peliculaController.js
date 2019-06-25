@@ -1,11 +1,7 @@
 const sequelize = require('sequelize');
 const db = require('../config/database');
-<<<<<<< HEAD
-const Pelicula = require('../models/Pelicula');
-=======
 const Pelicula = require('../models/Pelicula.js');
 const Genero_pelicula = require('../models/Genero_pelicula');
->>>>>>> origin/DevErick
 
 const controller = {};
 
